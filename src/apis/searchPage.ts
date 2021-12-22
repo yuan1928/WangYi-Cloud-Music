@@ -35,6 +35,13 @@ export function getSongLists(keyword:string,offset:number){
     })
 }
 
+export function getLyrics(keyword:string,offset:number){
+    return request({
+        url:"/search?limit=40&type=1006&keywords="+keyword+"&offset="+offset,
+        method:"get"
+    })
+}
+
 export function getUsers(keyword:string,offset:number){
     return request({
         url:"/search?limit=30&type=1002&keywords="+keyword+"&offset="+offset,

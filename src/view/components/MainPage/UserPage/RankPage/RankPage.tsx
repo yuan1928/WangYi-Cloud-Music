@@ -38,6 +38,17 @@ class RankPage extends React.Component<any, any>{
         globalRank:[]
     }
     componentDidMount() {
+        this.getInfo()
+    }
+
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+        if(this.state.officialRank.length===0 || this.state.globalRank.length===0)
+        {
+            this.getInfo()
+        }
+    }
+
+    getInfo=()=>{
         getOfficialRanks().then(res=>{
             let cur
             for(let rank of res.data.list)
@@ -51,16 +62,11 @@ class RankPage extends React.Component<any, any>{
         }).then(()=>{
             //console.log(this.state.rankID);
             Promise.all(this.state.officialRankID.map(id=>(this.getOfficialRank(id))))
-                   .then(()=>{
-                       Promise.all(this.state.globalRankID.map(id=>(this.getGlobalRank(id))))
-                              .then(()=> {this.forceUpdate()})
-                   })
-
-        })
-    }
-
-    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
-
+                .then(()=>{
+                    Promise.all(this.state.globalRankID.map(id=>(this.getGlobalRank(id))))
+                        .then(()=> {this.forceUpdate()})
+                })
+        },()=>{this.forceUpdate()})
     }
 
     getOfficialRank=(id:number)=>{

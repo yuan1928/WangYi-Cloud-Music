@@ -46,7 +46,6 @@ class SongListPage extends React.Component<any, any>{
                 <Route path="/song-list/collectors/:id" component={Collectors}/>
                 {this.props.location.pathname==="/song-list/"+this.state.id?
                     <Redirect to={"/song-list/songs/"+this.state.id}/>:null}
-
             </div>
         )
     }

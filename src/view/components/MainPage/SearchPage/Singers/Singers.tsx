@@ -11,13 +11,13 @@ interface Singer{
     alia:string,
     avatarUrl:string
 }
-
 interface State{
     keyword:string,
     page:number,
     resNum:number,
     singers:Singer[]
 }
+
 class Singers extends React.Component<any, any>{
     state:State={
         keyword:this.props.match.params.keyword,

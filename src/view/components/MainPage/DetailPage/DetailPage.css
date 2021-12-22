@@ -18,10 +18,10 @@
     margin-top: 20px;
     cursor: pointer;
     border-radius: 3px;
-    color: rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.8);
 }
 .detailPageSimilarSong:hover{
-    color: black;
+    color: rgba(0,0,0,0.4);
 }
 #detailPageMusicLyrics{
     width: 35vw;

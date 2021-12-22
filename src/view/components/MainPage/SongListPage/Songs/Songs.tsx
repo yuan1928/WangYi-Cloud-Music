@@ -3,7 +3,6 @@ import {getSongIDs,getSongUrl,isSongValid} from "../../../../../apis/songListDet
 import {HeartOutlined, DownloadOutlined} from "@ant-design/icons";
 import './Songs.css'
 import {playMusicOfSongList} from "../../MainPage";
-import {isNumber} from "util";
 
 interface Song{
     id:number,
@@ -67,12 +66,12 @@ class Songs extends React.Component<any, any>{
                     //选中行改变样式
                     if(this.state.selectedRow!==-1)
                     {
-                        console.log("last",this.state.selectedRow);
+                        //console.log("last",this.state.selectedRow);
                         const last=this.state.rows.current.children[this.state.selectedRow]
                         last.style.backgroundColor=(this.state.selectedRow%2===0)?"rgba(0,0,0,0.05)":"white"
                     }
                     this.setState(()=>({selectedRow:rowIdx-1}),()=>{
-                        console.log("cur",this.state.selectedRow);
+                        //console.log("cur",this.state.selectedRow);
                         const cur=this.state.rows.current.children[this.state.selectedRow]
                         cur.style.backgroundColor="rgba(0,0,0,0.15)"
                     })

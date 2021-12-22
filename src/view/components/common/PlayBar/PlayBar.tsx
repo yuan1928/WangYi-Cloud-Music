@@ -4,8 +4,9 @@ import EventEmitter from "events";
 import VolumeBar from "./VolumeBar/VolumeBar";
 import {Image,Tooltip} from "antd";
 import {HeartOutlined,HeartTwoTone,MenuUnfoldOutlined,StepBackwardOutlined,PlayCircleOutlined,StepForwardOutlined,
-        MenuOutlined,PauseOutlined,SoundOutlined,AudioMutedOutlined} from '@ant-design/icons'
+        MenuOutlined,PauseOutlined,SoundOutlined,AudioMutedOutlined,UpOutlined,DownOutlined} from '@ant-design/icons'
 import {withRouter} from "react-router";
+import {getSong} from "../../../../apis/songListDetailPage";
 
 const imgDefault="data:image/png;base64,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"
 const Event=new EventEmitter()
@@ -30,7 +31,8 @@ interface State{
     isShowingDetail:boolean,
     keyword:string,
     selectedRow:number,
-    songListID:number
+    songListID:number,
+    albumID:number
 }
 interface SongInfo{
     img:string,
@@ -62,7 +64,8 @@ class PlayBar extends React.Component<any, any>{
         isShowingDetail:false,
         keyword:"",
         selectedRow:Infinity,
-        songListID:Infinity
+        songListID:Infinity,
+        albumID:Infinity
     }
 
     componentDidMount() {
@@ -75,19 +78,31 @@ class PlayBar extends React.Component<any, any>{
         Event.addListener("mute",()=>{this.setState({isMute:true})})
         this.props.playMusicEvent.addListener("play", (url:string,id:number,keyword:string,selectedRow:number)=>
             {
-                //this.setState({musicUrl:"https://music.163.com/song/media/outer/url?id="+id+".mp3"})
-                //axios.get("https://music.163.com/song/media/outer/url?id="+id+".mp3").then(res=>console.log(res))
-                this.setState({musicUrl:url,musicID:id,keyword:keyword,selectedRow:selectedRow})
-                this.setState({isPause:false})
+                this.setState({musicUrl:url,musicID:id,keyword:keyword,selectedRow:selectedRow,isPause:false})
+                this.getSongInfo()
                 this.play()
             })
         this.props.playSongListEvent.addListener("play",(id:number, url:string, songListID:number)=>{
             this.setState({musicUrl:url, musicID:id, keyword:"$", selectedRow:Infinity, isPause:false, songListID:songListID})
+            this.getSongInfo()
             this.play()
         })
         this.props.playSingleSongEvent.addListener("play",(id:number,url:string, path:string)=>{
             this.setState({musicUrl:url, musicID:id, keyword:path, selectedRow:Infinity, isPause:false})
+            this.getSongInfo()
             this.play()
+        })
+        this.props.playAlbumSongEvent.addListener("play",(id:number, url:string, albumID:number)=>{
+            this.setState({musicUrl:url, musicID:id, keyword:"$$", selectedRow:Infinity, isPause:false, albumID:albumID})
+            this.getSongInfo()
+            this.play()
+        })
+    }
+
+    getSongInfo=()=>{
+        getSong(this.state.musicID).then(res=>{
+            const data=res.data.songs[0]
+            this.setState({cur:{img:data.al.picUrl,title:data.name,singer:data.ar[0].name}})
         })
     }
 
@@ -178,6 +193,11 @@ class PlayBar extends React.Component<any, any>{
             let keyword=this.state.keyword
             this.setState({isShowingDetail:false})
             if(keyword==="$") this.props.history.push("/song-list/"+this.state.songListID)
+            else if(keyword==="$$")
+            {
+                //console.log("$$",this.state.albumID);
+                this.props.history.push("/album/"+this.state.albumID)
+            }
             else if(keyword==="$rank")this.props.history.push("/user/rank")
             else if(keyword==="$new-song")this.props.history.push("/user/new-song")
             else if(keyword==="$user" || keyword==="$another-song")this.props.history.push("/user")
@@ -190,22 +210,61 @@ class PlayBar extends React.Component<any, any>{
             <div id="playRoot">
                 <style ref={style} scoped/>
                 <div id='songInfo'>
-                    <Image
-                        src={this.state.cur.img}
-                        width="50px" height="50px"
-                        fallback={imgDefault}
-                        onClick={this.showDetail}
-                    />
+                    {
+                        this.state.musicID===Infinity?
+                            <Image
+                                src={this.state.cur.img}
+                                width="50px" height="50px"
+                                fallback={imgDefault}
+                                onClick={this.showDetail}
+                            />:
+                            <div style={{position:"relative"}}>
+                                <Tooltip title={this.state.isShowingDetail?"收起详情页":"展开详情页"}>
+                                    <img
+                                        src={this.state.cur.img}
+                                        style={{width:"50px",height:"50px",objectFit:"cover",borderRadius:"3px",cursor:'pointer'}}
+                                        onClick={this.showDetail}
+                                    />
+                                </Tooltip>
+                                {
+                                    this.state.isShowingDetail?
+                                        <div style={{position:"absolute",top:"6px",left:"18px",color:'white'}}>
+                                            <div>
+                                                <DownOutlined/>
+                                            </div>
+                                            <div>
+                                                <DownOutlined/>
+                                            </div>
+                                        </div>:
+                                        <div style={{position:"absolute",top:"6px",left:"18px",color:'white'}}>
+                                            <div>
+                                                <UpOutlined/>
+                                            </div>
+                                            <div>
+                                                <UpOutlined/>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                    }
                     <div id="titleAndLikeAndSinger">
                         <div id="titleAndLike">
-                            <div>{this.state.cur.title}</div>
+                            <Tooltip title={this.state.cur.title}>
+                                <div style={{whiteSpace:"nowrap",wordBreak:"keep-all",overflow:"hidden",textOverflow:"ellipsis",cursor:"pointer"}}>
+                                    {this.state.cur.title}
+                                </div>
+                            </Tooltip>
                             {
                                 this.state.like?
                                     <HeartTwoTone twoToneColor="red" onClick={()=>{this.setState({like:!this.state.like})}}/>:
                                     <HeartOutlined onClick={()=>{this.setState({like:!this.state.like})}}/>
                             }
                         </div>
-                        <div>{this.state.cur.singer}</div>
+                        <Tooltip title={this.state.cur.singer}>
+                            <div style={{whiteSpace:"nowrap",wordBreak:"keep-all",overflow:"hidden",textOverflow:"ellipsis",cursor:"pointer"}}>
+                                {this.state.cur.singer}
+                            </div>
+                        </Tooltip>
                     </div>
                 </div>
                 <div id="play">

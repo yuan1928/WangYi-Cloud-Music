@@ -58,7 +58,8 @@ class Albums extends React.Component<any, any>{
     }
 
     getAlbumDetail=(id:number)=>{
-        //this.props.history.push("/song-list/"+id)
+        this.props.history.push("/album/"+id)
+        //this.props.history.push("/user")
     }
 
     componentDidMount() {

@@ -82,14 +82,17 @@ class DetailPage extends React.Component<any, any>{
        })
 
        getSimilarSongs(this.state.curID).then(res=>{
+           let idx=1
            for(let song of res.data.songs)
            {
+               if(idx===5)break
                this.state.similarSongs.push({
                    title:song.name+((song.alias.length)?("("+song.alias[0]+")"):"")+"-"+song.artists[0].name,
                    picUrl:song.album.picUrl,
                    songUrl:song.mp3Url,
                    id:song.id
                })
+               idx+=1
            }
        })
 

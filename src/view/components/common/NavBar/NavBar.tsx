@@ -7,6 +7,10 @@ import { LeftOutlined , RightOutlined, SearchOutlined, AudioOutlined, UserOutlin
 import  "./NavBar.css"
 import {withRouter} from "react-router";
 import EventEmitter from "events";
+import {isLogin} from "../../MainPage/MainPage";
+import {loginEvent} from "../../MainPage/MainPage";
+import {logout} from "../../../../apis/LoginPage";
+import wyy from "../../../../assets/wyy.svg"
 
 const updateKeyword=new EventEmitter()
 interface Button{
@@ -24,23 +28,10 @@ interface State{
     login:any,
     history:any
 }
-/*const SearchBar=(props:any)=>{
-    const nav = useNavigate()
-    return (
-        <Input  placeholder="搜索"
-                value={props.self.state.searchValue}
-                prefix={<Button icon={<SearchOutlined/>} style={{border:"none"}}/>}
-                suffix={props.self.state.clear?(props.self.state.clearButtonActive):(props.self.state.clearButtonDeactive)}
-                style={{border:"none",borderRadius:"16px",color:"black"}}
-                onChange={props.self.changeSearch}
-                onPressEnter={()=>{nav("/search/"+ props.self.state.searchValue)}}
-        />
-    )
-}*/
 
 class NavBar extends React.Component<any, any>{
     state:State={
-        buttonGroup1:[{title:"前进",icon:LeftOutlined},{title:"后退",icon:RightOutlined}],
+        buttonGroup1:[{title:"后退",icon:LeftOutlined},{title:"前进",icon:RightOutlined}],
         buttonGroup2:[{title:"1",icon:<SkinOutlined/>},{title:"2",icon:<SettingOutlined/>},{title:"3",icon:<MailOutlined/>}],
         buttonGroup3:[{title:"mini模式",icon:<FullscreenExitOutlined/>},{title:"最小化",icon:<MinusOutlined/>},
                       {title:"最大化",icon:<BorderOutlined/>},{title:"关闭",icon:<CloseOutlined/>}],
@@ -55,6 +46,9 @@ class NavBar extends React.Component<any, any>{
 
     componentDidMount() {
         this.state.login.current.focus()
+        loginEvent.addListener("login",()=>{
+
+        })
     }
 
     changeSearch=(e:any)=>{
@@ -77,14 +71,37 @@ class NavBar extends React.Component<any, any>{
     login=()=>{
         //const node=this.state.login
         //跳出登录页面
+        this.props.history.push("/login")
     }
+
+    logout_=()=>{
+        logout().then(res=>{
+            console.log(res);
+            if(res.data.code===200)
+            {
+                loginEvent.emit("logout")
+                this.props.history.push("/login")
+            }
+        })
+    }
+
+    prev=()=>{
+        /*const path=this.props.location.pathname.split("/")
+        path.shift()
+        const page=path[0]
+        const subPage=path[1]
+        const key=path[2]
+        const searchDict=['singles','singers','albums','videos','song-lists','lyrics','users']*/
+        this.props.history.push("/user")
+    }
+
+    next=()=>{}
 
     render() {
         return (
             <div id="navRoot">
                 <div id="navLeft">
-                    <img src={icon} id="navIcon" className="navItem"/>
-                    <span className="navItem navTitle span">网易云音乐</span>
+                    <img style={{width:"180px",objectFit:"cover"}} src={wyy}/>
                 </div>
                 <div id="navCenter">
                     {
@@ -92,6 +109,7 @@ class NavBar extends React.Component<any, any>{
                             (<Tooltip title={item.title} key={item.title}>
                                 <Button size="small" type="primary" shape="circle" icon={<item.icon/>}  className="navItem"
                                          style={{backgroundColor:'rgba(0,0,0,0.1)',border:"none",color:"azure"}}
+                                        onClick={item.title==="后退"?this.prev:this.next}
                                 />
                             </Tooltip>)
                         )
@@ -113,10 +131,19 @@ class NavBar extends React.Component<any, any>{
                 </div>
                 <div id="navRight">
                     <Avatar icon={<UserOutlined />}  className="navItem"/>
-                    <Button size="small" className="navItem" icon={<CaretDownOutlined/>} ref={this.state.login}
-                            style={{backgroundColor:'rgb(201,38,32)',border:"none",color:"azure"}} onClick={this.login}>
-                        未登录
-                    </Button>
+                    {
+                        isLogin?
+                            <Button size="small" className="navItem" icon={<CaretDownOutlined/>}
+                                    style={{backgroundColor:'rgb(201,38,32)',border:"none",color:"azure"}}
+                                    onClick={this.logout_}
+                            >
+                                退出
+                            </Button>:
+                            <Button size="small" className="navItem" icon={<CaretDownOutlined/>} ref={this.state.login}
+                                    style={{backgroundColor:'rgb(201,38,32)',border:"none",color:"azure"}} onClick={this.login}>
+                                未登录
+                            </Button>
+                    }
                     <Button size="small"  className="navItem"
                             style={{backgroundColor:'rgb(201,38,32)',border:"none",color:"azure"}}>
                         开通VIP
