@@ -3,6 +3,7 @@ import {Button, Input, Tooltip,Checkbox} from "antd";
 import {UserOutlined,EyeTwoTone,EyeInvisibleOutlined,CloseOutlined} from '@ant-design/icons';
 import {getValid,loginByValid,logout,loginByPassword} from "../../../../apis/LoginPage";
 import {loginEvent} from "../MainPage";
+import {isLogin} from "../MainPage";
 import {withRouter} from "react-router-dom";
 import './Login.css'
 import BG from "../../../../assets/BG.svg"
@@ -46,9 +47,23 @@ class Login extends React.Component<any, any>{
         })
     }
 
+    storeAccount=(res:any)=>{
+        window.localStorage.setItem("id",res.data.account.id)
+        window.localStorage.setItem("token",res.data.token)
+        window.localStorage.setItem("cookie",encodeURIComponent(res.data.cookie))
+    }
+
     submit=()=>{
+        if(isLogin){alert("当前账号已登录，请确认输入的账号是否正确")}
         /*logout().then(res=>{
-            console.log(res);})*/
+            if(res.data.code===200)
+            {
+                console.log("log out");
+                window.localStorage.removeItem("id")
+                window.localStorage.removeItem("cookie")
+                window.localStorage.removeItem("token")
+            }
+        })*/
         if(this.state.phone.length<11){alert("请正确填写手机号码")}
         if(!this.state.isAgree){alert("请同意相关服务条款")}
         if(this.state.byValid)
@@ -59,6 +74,7 @@ class Login extends React.Component<any, any>{
                 loginByValid(this.state.phone,this.state.valid).then(res=>{
                     if(res.data.code===200)
                     {
+                        console.log(res);
                         loginEvent.emit("login")
                         this.props.history.push("/user")
                     }
@@ -75,6 +91,7 @@ class Login extends React.Component<any, any>{
                     console.log(res);
                     if(res.data.code===200)
                     {
+                        this.storeAccount(res)
                         loginEvent.emit("login")
                         this.props.history.push("/user")
                     }
@@ -89,9 +106,16 @@ class Login extends React.Component<any, any>{
             <div style={{width:'100%',display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <img src={BG} width="100%" height="100%" style={{zIndex:'-100',position:'absolute',left:0,top:0}}/>
                 <div style={{width:'30%',padding:"50px",backgroundColor:"rgba(0,0,0,0.1)",borderRadius:"20px"}}>
-                    <div style={{display:"flex",alignItems:"center"}}>
-                        <img src={icon} style={{width:"30%",objectFit:"cover"}}/>
-                        <img src={icon1} style={{width:"30%",objectFit:"cover"}}/>
+                    <div style={{display:"flex",justifyContent:"space-between"}}>
+                        <div style={{width:"60%",display:"flex",alignItems:"center"}}>
+                            <img src={icon} style={{width:"50%",objectFit:"cover"}}/>
+                            <img src={icon1} style={{width:"50%",objectFit:"cover"}}/>
+                        </div>
+                        <div id="loginBack" onClick={()=>{this.props.history.push("/user")}}>
+                            <Tooltip title="回到主页">
+                                <CloseOutlined/>
+                            </Tooltip>
+                        </div>
                     </div>
                     <div style={{margin:"10px 0 10px 0",display:"flex",alignItems:"center"}}>
                         <Input

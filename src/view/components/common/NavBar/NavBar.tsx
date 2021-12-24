@@ -11,6 +11,7 @@ import {isLogin} from "../../MainPage/MainPage";
 import {loginEvent} from "../../MainPage/MainPage";
 import {logout} from "../../../../apis/LoginPage";
 import wyy from "../../../../assets/wyy.svg"
+import {getAccountInfo,getUserInfo} from "../../../../apis/LoginPage";
 
 const updateKeyword=new EventEmitter()
 interface Button{
@@ -26,7 +27,9 @@ interface State{
     clearButtonActive:any,
     clearButtonDeactive:any,
     login:any,
-    history:any
+    history:any,
+    avatarUrl:string,
+    userName:""
 }
 
 class NavBar extends React.Component<any, any>{
@@ -41,14 +44,28 @@ class NavBar extends React.Component<any, any>{
                                    onClick={()=>{this.setState({searchValue:'',clear:false})}}/>),
         clearButtonDeactive:(<Button icon={<CloseOutlined/>} style={{color:"white",border:"none"}}/>),
         login:React.createRef(),
-        history:null
+        history:null,
+        avatarUrl:"",
+        userName:""
     }
 
     componentDidMount() {
-        this.state.login.current.focus()
+        //this.state.login.current.focus()
         loginEvent.addListener("login",()=>{
-
+            if(window.localStorage.getItem("id")!==null)
+            {
+                getUserInfo(window.localStorage.getItem("id")).then(res=>{
+                    this.setState({avatarUrl:res.data.profile.avatarUrl,userName:res.data.profile.nickname})
+                    this.forceUpdate()
+                })
+            }
         })
+        if(isLogin && window.localStorage.getItem("id")!==null)
+        {
+            getUserInfo(window.localStorage.getItem("id")).then(res=>{
+                this.setState({avatarUrl:res.data.profile.avatarUrl,userName:res.data.profile.nickname})
+            })
+        }
     }
 
     changeSearch=(e:any)=>{
@@ -80,6 +97,10 @@ class NavBar extends React.Component<any, any>{
             if(res.data.code===200)
             {
                 loginEvent.emit("logout")
+                window.localStorage.removeItem("id")
+                window.localStorage.removeItem("cookie")
+                window.localStorage.removeItem("token")
+                this.setState({avatarUrl:"",userName:""})
                 this.props.history.push("/login")
             }
         })
@@ -130,7 +151,20 @@ class NavBar extends React.Component<any, any>{
                     </Tooltip>
                 </div>
                 <div id="navRight">
-                    <Avatar icon={<UserOutlined />}  className="navItem"/>
+                    {
+                        this.state.avatarUrl===""?
+                            <Avatar icon={<UserOutlined />}  className="navItem"/>:
+                            <img
+                                src={this.state.avatarUrl}
+                                style={{width:"50px",height:"50px",objectFit:"cover",borderRadius:"50%"}}
+                                className="navItem"
+                            />
+                    }
+                    {
+                        this.state.userName===""?
+                            null:
+                            <div className="navItem" style={{color:"white",fontWeight:"bolder"}}>{this.state.userName}</div>
+                    }
                     {
                         isLogin?
                             <Button size="small" className="navItem" icon={<CaretDownOutlined/>}

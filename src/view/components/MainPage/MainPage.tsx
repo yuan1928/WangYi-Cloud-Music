@@ -8,6 +8,7 @@ import DetailPage from "./DetailPage/DetailPage";
 import SongListPage from "./SongListPage/SongListPage";
 import AlbumPage from "./AlbumPage/AlbumPage";
 import Login from "./LoginPage/Login";
+import PlayHistoryPage from "./PlayHistoryPage/PlayHistoryPage";
 import EventEmitter from "events";
 import './MainPage.css'
 //import {Router} from "react-router";
@@ -19,6 +20,7 @@ const playMusicOfSongList=new EventEmitter()
 const playSingleSong=new EventEmitter()
 const playAlbumSong=new EventEmitter()
 const loginEvent=new EventEmitter()
+const replayEvent=new EventEmitter()
 
 class User extends React.Component<any, any>{
     render() {
@@ -75,9 +77,20 @@ class Album extends React.Component<any, any>{
         )
     }
 }
+class PlayHistory extends React.Component<any, any>{
+    render() {
+        return (
+            <>
+                <SideBar/>
+                <div id="content">
+                    <PlayHistoryPage />
+                </div>
+            </>
+        )
+    }
+}
+let isLogin=(window.localStorage.getItem("id")!==null)
 
-
-let isLogin=false
 class MainPage extends React.Component<any, any>{
     componentDidMount() {
         loginEvent.addListener("login",()=>{isLogin=true})
@@ -100,6 +113,7 @@ class MainPage extends React.Component<any, any>{
                             <Route path="/song-list/:id" component={SongList}/>
                             <Route path="/album/:id" component={Album}/>
                             <Route path="/login" component={Login}/>
+                            <Route path="/play-history" component={PlayHistory}/>
                             <Redirect to="/user"/>
                         </Switch>
                     </div>
@@ -110,6 +124,7 @@ class MainPage extends React.Component<any, any>{
                                     playSongListEvent={playMusicOfSongList}
                                     playSingleSongEvent={playSingleSong}
                                     playAlbumSongEvent={playAlbumSong}
+                                    replayEvent={replayEvent}
                         />
                     </div>
                 </div>
@@ -120,4 +135,4 @@ class MainPage extends React.Component<any, any>{
 }
 
 export default withRouter(MainPage)
-export {playMusicOfSongList,playSingleSong,playMusicEvent,playAlbumSong,isLogin,loginEvent}
+export {playMusicOfSongList,playSingleSong,playMusicEvent,playAlbumSong,isLogin,loginEvent,replayEvent}

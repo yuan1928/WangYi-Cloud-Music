@@ -28,9 +28,37 @@ export function logout(){
     })
 }
 
+export function isLogin(){
+    return request({
+        url:"/login/status",
+        method:"get",
+    })
+}
+
 export function getAccountInfo(){
     return request({
         url:"/user/account",
         method:"get",
+    })
+}
+
+export function getUserInfo(uid:string|null){
+    return request({
+        url:'/user/detail?uid='+uid,
+        method:"get"
+    })
+}
+
+export function getUserSongs(uid:string|null,cookie:string|null){
+    return request({
+        url:"/user/playlist?uid="+uid+"&cookie"+cookie,
+        method:'get'
+    })
+}
+
+export function getUserSongList(uid:string|null){
+    return request({
+        url:"/user/record?uid="+uid+"&type=0",
+        method:'get'
     })
 }

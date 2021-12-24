@@ -79,4 +79,5 @@
 }
 #playSongsList{
     right: 75px;
+    cursor: pointer;
 }

@@ -8,3 +8,14 @@
 #login:hover{
     background-color: rgb(201,38,32);
 }
+#loginBack{
+    width: 40%;
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    color: black;
+    cursor: pointer;
+}
+#loginBack:hover{
+    color: gray;
+}
