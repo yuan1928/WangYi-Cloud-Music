@@ -4,6 +4,7 @@ import Nav from "../Nav/Nav";
 import {UserOutlined} from "@ant-design/icons";
 import {getSongUrl, isSongValid} from "../../../../../../apis/songListDetailPage";
 import {playSingleSong} from "../../../MainPage";
+import {Tooltip} from "antd";
 
 interface CD{
     id:number,
@@ -79,11 +80,15 @@ class NewCDs extends React.Component<any, any>{
                                 onClick={()=>{this.play(item.id)}}
                                 alt=""
                             />
-                            <div style={{position:"absolute",top:"220px",display:"flex",justifyContent:"flex-start",flexWrap:"wrap"}}>
-                                {item.name}
-                                {item.alia.length?
-                                    <div style={{color:"rgba(0,0,0,0.3)",textJustify:"initial"}}>({item.alia})</div>: null}
-                            </div>
+                            <Tooltip title={item.name+(item.alia.length?("("+item.alia+")"):item.alia)}>
+                                <div style={{width:"100%",height:'50px',display:"flex",justifyContent:"flex-start",flexWrap:"wrap",cursor:"pointer"}}>
+                                    <div style={{textAlign:"start",whiteSpace:"nowrap",wordBreak:"keep-all",
+                                        textOverflow:"ellipsis",overflow:"hidden"}}>{item.name}</div>
+                                    {item.alia.length?
+                                        <div style={{color:"rgba(0,0,0,0.3)",textJustify:"initial",display:"inline",whiteSpace:"nowrap",wordBreak:"keep-all",
+                                            textOverflow:"ellipsis",overflow:"hidden"}}>({item.alia})</div>: null}
+                                </div>
+                            </Tooltip>
                             <div style={{position:"absolute",top:"25px",right:"25px",color:"white"}}>
                                 <UserOutlined/>
                                 {item.singer}

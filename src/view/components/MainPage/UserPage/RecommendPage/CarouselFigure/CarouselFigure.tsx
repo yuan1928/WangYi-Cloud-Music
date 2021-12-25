@@ -158,7 +158,7 @@ class CarouselFigure extends React.Component<any, any>{
                         {
                             this.state.backLeft.map((item)=>(
                                 <div style={{position:"relative"}}>
-                                    <img src={item} alt="" style={{height:"150px",objectFit:"cover"}}/>
+                                    <img src={item} alt="" style={{width:"100%",objectFit:"cover"}}/>
                                 </div>
                             ))
                         }
@@ -168,7 +168,7 @@ class CarouselFigure extends React.Component<any, any>{
                     <Carousel dots={false} ref={this.state.carouselC}>
                         {
                             this.state.backCenter.map((item)=>(
-                                <div><img src={item} alt="" style={{height:"200px",objectFit:"cover"}}/></div>
+                                <div><img src={item} alt="" style={{width:"100%",objectFit:"cover"}}/></div>
                             ))
                         }
                     </Carousel>
@@ -177,7 +177,7 @@ class CarouselFigure extends React.Component<any, any>{
                     <Carousel dots={false} ref={this.state.carouselR}>
                         {
                             this.state.backRight.map((item)=>(
-                                <div><img src={item} alt="" style={{height:"150px",objectFit:"cover"}}/></div>
+                                <div><img src={item} alt="" style={{width:"100%",objectFit:"cover"}}/></div>
                             ))
                         }
                     </Carousel>

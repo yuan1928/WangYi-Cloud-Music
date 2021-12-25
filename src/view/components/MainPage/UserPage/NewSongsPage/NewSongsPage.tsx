@@ -2,6 +2,7 @@ import React from "react";
 import {Route,withRouter,Redirect} from "react-router-dom";
 import NewSongs from "./NewSongs/NewSongs";
 import NewCDs from "./NewCDs/NewCDs";
+import './NewSongsPage.css'
 
 interface State{
     newSongButtonRef:any,
@@ -16,10 +17,8 @@ class NewSongsPage extends React.Component<any, any>{
     click=(type:string)=>{
         const buttonSelected=(type==="song")?this.state.newSongButtonRef.current:this.state.newCdButtonRef.current
         const buttonOther=(type==="song")?this.state.newCdButtonRef.current:this.state.newSongButtonRef.current
-        buttonSelected.style.backgroundColor="rgba(0,0,0,0.2)"
-        buttonSelected.style.color="white"
-        buttonOther.style.backgroundColor="white"
-        buttonOther.style.color="black"
+        buttonSelected.id="newSongsPageSelectedButton"
+        buttonOther.id="newSongsPageAnotherButton"
         this.props.history.push("/user/new/"+type)
     }
 
@@ -34,18 +33,16 @@ class NewSongsPage extends React.Component<any, any>{
                             borderRadius:"10px",display:"flex",alignItems:"center",justifySelf:"center"}}
                 >
                     <div
-                        style={{width:"50%",borderRadius:"10px",backgroundColor:"rgba(0,0,0,0.2)",color:"white",
-                                 height:"100%",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}
                         ref={this.state.newSongButtonRef}
                         onClick={()=>{this.click("song")}}
+                        id="newSongsPageSelectedButton"
                     >
                         新歌速递
                     </div>
                     <div
-                        style={{width:"50%",borderRadius:"10px", height:"100%",display:"flex",alignItems:"center",
-                                justifyContent:"center",cursor:"pointer"}}
                         ref={this.state.newCdButtonRef}
                         onClick={()=>{this.click("cd")}}
+                        id="newSongsPageAnotherButton"
                     >
                         新碟上架
                     </div>

@@ -62,12 +62,14 @@ class NewMusic extends React.Component<any, any>{
                         this.state.songsInfo.map(item=>(
                             <div className="newMusicContainer" key={item.id} style={{position:"relative"}}>
                                 <div>
-                                    <img
-                                        src={item.imgUrl}
-                                        style={{height:"50px",objectFit:"cover",borderRadius:"2px",cursor:"pointer"}}
-                                        alt=""
-                                        onClick={()=>{this.play(item.id)}}
-                                    />
+                                    <Tooltip title="点击播放">
+                                        <img
+                                            src={item.imgUrl}
+                                            style={{height:"50px",objectFit:"cover",borderRadius:"2px",cursor:"pointer"}}
+                                            alt=""
+                                            onClick={()=>{this.play(item.id)}}
+                                        />
+                                    </Tooltip>
                                 </div>
                                 <Tooltip title={item.title+(item.description.length?("("+item.description+")"):"")}>
                                     <div
@@ -85,7 +87,6 @@ class NewMusic extends React.Component<any, any>{
                                         <div style={{color:"grey"}}>{item.author}</div>
                                     </div>
                                 </Tooltip>
-                                <div style={{position:"absolute", left:"15px",top:"15px",color:"white"}}><PlayCircleOutlined/></div>
                             </div>
                         ))
                     }

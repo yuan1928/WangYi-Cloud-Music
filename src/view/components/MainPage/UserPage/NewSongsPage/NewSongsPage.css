@@ -1,0 +1,23 @@
+#newSongsPageSelectedButton:hover,#newSongsPageAnotherButton:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+#newSongsPageSelectedButton{
+    width: 50%;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+#newSongsPageAnotherButton{
+    width: 50%;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+.NewSongsPageRowEven,.NewSongsPageRowOdd{
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 20px 0 20px;
+    border-radius: 6px;
+    padding: 8px 0 8px 0;
+    cursor: pointer;
+}
+.NewSongsPageRowEven{
+    background-color: rgba(0,0,0,0.05);
+}
+.NewSongsPageRowEven:hover,.NewSongsPageRowOdd:hover{
+    background-color: rgba(0,0,0,0.1);
+}

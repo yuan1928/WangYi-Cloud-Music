@@ -2,7 +2,7 @@ import React from "react";
 import {getLyric,getDetail,getSimilarSongs,getComments} from "../../../../apis/detailPage";
 import './DetailPage.css'
 import {LikeOutlined, ShareAltOutlined, CommentOutlined} from '@ant-design/icons'
-import { Divider, Pagination} from 'antd';
+import {Divider, Pagination, Tooltip} from 'antd';
 import {withRouter} from "react-router";
 import {getSongUrl, isSongValid} from "../../../../apis/songListDetailPage";
 import {playSingleSong} from "../MainPage";
@@ -208,7 +208,11 @@ class DetailPage extends React.Component<any, any>{
                                     className="detailPageSimilarSong"
                                 >
                                     <img src={item.picUrl} style={{width:"30px",height:"30px",borderRadius:"3px",objectFit:"cover"}}/>
-                                    <div style={{marginLeft:"5px"}}>{item.title}</div>
+                                    <div style={{marginLeft:"5px",textAlign:"start",width:"300px", whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",wordBreak:"keep-all"}}>
+                                        <Tooltip title={item.title}>
+                                            {item.title}
+                                        </Tooltip>
+                                    </div>
                                 </div>
                             ))
                         }

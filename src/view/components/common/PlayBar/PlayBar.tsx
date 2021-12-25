@@ -79,29 +79,35 @@ class PlayBar extends React.Component<any, any>{
         Event.addListener("mute",()=>{this.setState({isMute:true})})
         this.props.playMusicEvent.addListener("play", (url:string,id:number,keyword:string,selectedRow:number)=>
             {
-                this.setState({musicUrl:url,musicID:id,keyword:keyword,selectedRow:selectedRow,isPause:false})
+                this.setState(()=>({musicUrl:url,musicID:id,keyword:keyword,selectedRow:selectedRow,isPause:false,endTime:"00:00",isPlaying:true}),()=>{
+                    this.getSongInfo()
+                    this.play()
+                })
+            })
+        this.props.playSongListEvent.addListener("play",(id:number, url:string, songListID:number)=>{
+            this.setState(()=>({musicUrl:url, musicID:id, keyword:"$", selectedRow:Infinity, isPause:false, songListID:songListID,endTime:"00:00",isPlaying:true}),
+                ()=>{
                 this.getSongInfo()
                 this.play()
             })
-        this.props.playSongListEvent.addListener("play",(id:number, url:string, songListID:number)=>{
-            this.setState({musicUrl:url, musicID:id, keyword:"$", selectedRow:Infinity, isPause:false, songListID:songListID})
-            this.getSongInfo()
-            this.play()
         })
         this.props.playSingleSongEvent.addListener("play",(id:number,url:string, path:string)=>{
-            this.setState({musicUrl:url, musicID:id, keyword:path, selectedRow:Infinity, isPause:false})
-            this.getSongInfo()
-            this.play()
+            this.setState(()=>({musicUrl:url, musicID:id, keyword:path, selectedRow:Infinity, isPause:false,endTime:"00:00",isPlaying:true}),()=>{
+                this.getSongInfo()
+                this.play()
+            })
         })
         this.props.playAlbumSongEvent.addListener("play",(id:number, url:string, albumID:number)=>{
-            this.setState({musicUrl:url, musicID:id, keyword:"$$", selectedRow:Infinity, isPause:false, albumID:albumID})
-            this.getSongInfo()
-            this.play()
+            this.setState(()=>({musicUrl:url, musicID:id, keyword:"$$", selectedRow:Infinity, isPause:false, albumID:albumID,endTime:"00:00",isPlaying:true}),()=>{
+                this.getSongInfo()
+                this.play()
+            })
         })
         this.props.replayEvent.addListener("play",(id:number, url:string)=>{
-            this.setState({musicUrl:url, musicID:id, keyword:"$replay", selectedRow:Infinity, isPause:false})
-            this.getSongInfo()
-            this.play()
+            this.setState(()=>({musicUrl:url, musicID:id, keyword:"$replay", selectedRow:Infinity, isPause:false,endTime:"00:00",isPlaying:true}),()=>{
+                this.getSongInfo()
+                this.play()
+            })
         })
     }
 
@@ -117,8 +123,7 @@ class PlayBar extends React.Component<any, any>{
         const player:any=this.state.player
         if(!this.state.isPause)
         {player.current.src=this.state.musicUrl}
-        this.setState({isPlaying:true,isPause:false})
-        player.current.play()
+        this.setState(()=>({isPlaying:true,isPause:false}),()=>{player.current.play()})
     }
 
     pause=()=>{
@@ -143,14 +148,13 @@ class PlayBar extends React.Component<any, any>{
         bar.current.style.width=(100*cur/player.current.duration)+"%"
         this.setTime(cur,true)
         if(this.state.endTime==="00:00" && !Number.isNaN(player.current.duration))
-        {
-            this.setTime(player.current.duration,false)
-        }
-        if(this.state.curTime===this.state.endTime)
-        {this.setState({isPlaying:false})}
-        //console.log(player.current.duration);
+        {this.setTime(player.current.duration,false)}
+        if(this.state.curTime===this.state.endTime && this.state.curTime!=="00:00")
+        {this.setState(()=>({isPlaying:false}),()=>{})}
 
         this.props.playWithLyricsEvent.emit("updateLyric",cur)
+
+        //console.log(this.state.isPlaying,this.state.isPause);
     }
 
     clickProgress=(e:any)=>{
@@ -178,7 +182,6 @@ class PlayBar extends React.Component<any, any>{
             player.current.volume=0
             this.setState({isMute:true})
             Event.emit("setVolumeZero")
-            console.log("in");
         }
         else
         {

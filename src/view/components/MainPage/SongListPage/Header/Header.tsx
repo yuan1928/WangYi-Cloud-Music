@@ -67,7 +67,7 @@ class Header extends React.Component<any, any>{
         const abstract=this.state.descriptionAbstractRef
         abstract.current.style.display="none"
         const full=this.state.descriptionFullRef
-        full.current.style.display="flex"
+        full.current.style.display="block"
     }
 
     showAbstractDescription=()=>{
@@ -145,7 +145,7 @@ class Header extends React.Component<any, any>{
                          style={{display:"none",textAlign:"start"}}
                          ref={this.state.descriptionFullRef}
                     >
-                        {this.state.description}
+                        {this.state.description.split("\n").map(paragraph=>(<div style={{textAlign:"start"}}>{paragraph}</div>))}
                         <CaretUpOutlined onClick={this.showAbstractDescription} style={{color:"rgb(201,38,32)"}}/>
                     </div>
                 </div>

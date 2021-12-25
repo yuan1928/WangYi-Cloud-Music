@@ -108,7 +108,7 @@ class MainPage extends React.Component<any, any>{
                     <div id="center">
                         <Switch>
                             <Route path="/user" component={User}/>
-                            <Route path="/search/:keyword/:selectedRow" component={Search}/>
+                            <Route path="/search/:keyword/:selectedRow?" component={Search}/>
                             <Route path="/detail/:id/:keyword" component={Detail}/>
                             <Route path="/song-list/:id" component={SongList}/>
                             <Route path="/album/:id" component={Album}/>

@@ -5,6 +5,7 @@ import {PlayCircleOutlined} from "@ant-design/icons";
 import {Tooltip} from "antd";
 import {getSongUrl, isSongValid} from "../../../../../../apis/songListDetailPage";
 import {playSingleSong} from "../../../MainPage";
+import './NewSongs.css'
 
 interface Song{
     id:number,
@@ -80,12 +81,11 @@ class NewSongs extends React.Component<any, any>{
         return (
             <div style={{width:"100%"}}>
                 <Nav click={this.click}/>
+                <div style={{marginBottom:"20px"}}/>
                 {
                     this.state.newSongs.map((item,idx)=>(
                         <div
-                            style={{width:"95%",display:"flex",justifyContent:"space-evenly",alignItems:"center",
-                                    margin:"20px",backgroundColor:idx%2===0?"rgba(0,0,0,0.05)":"white",borderRadius:"6px",
-                                    padding:"10px 0 10px 0",cursor:"pointer"}}
+                            className={(idx%2===0)?"NewSongsPageRowEven":"NewSongsPageRowOdd"}
                             onClick={()=>{this.play(item.id)}}
                         >
                             <div style={{width:"35%",display:"flex",alignItems:"center",marginRight:"20px"}}>

@@ -44,6 +44,7 @@ class RankPage extends React.Component<any, any>{
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
         if(this.state.officialRank.length===0 || this.state.globalRank.length===0)
         {
+            console.log('更新')
             this.getInfo()
         }
     }
@@ -66,7 +67,7 @@ class RankPage extends React.Component<any, any>{
                     Promise.all(this.state.globalRankID.map(id=>(this.getGlobalRank(id))))
                         .then(()=> {this.forceUpdate()})
                 })
-        },()=>{this.forceUpdate()})
+        },()=>{console.log('超时');this.forceUpdate()})
     }
 
     getOfficialRank=(id:number)=>{

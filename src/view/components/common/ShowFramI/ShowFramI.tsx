@@ -10,16 +10,16 @@ class ShowFramI extends React.Component<any, any>{
 
     render() {
         return (
-            <div className={this.props.className} key={this.props.item.id} onClick={()=>{this.click(this.props.item.id)}}>
-                <img style={{width:"100%",objectFit:"cover",top:0,borderRadius:"3px",cursor:"pointer"}} src={this.props.item.imgUrl}/>
-                <div style={{position:"absolute",top:this.props.titlePos,textAlign:"start"}}>
+            <div className={this.props.className} key={this.props.item.id} onClick={()=>{this.click(this.props.item.id)}} style={{marginBottom:"20px"}}>
+                <img style={{width:"100%",objectFit:"cover",top:0,borderRadius:"5px",cursor:"pointer"}} src={this.props.item.imgUrl}/>
+                <div style={{textAlign:"start"}}>
                     {this.props.item.title}
                 </div>
                 <div style={{position:"absolute",top:'5px',right:"5px",color:"white"}}>
                     {(this.props.item.playCount!==undefined)?(Math.ceil(this.props.item.playCount/10000)+"万"):null}
                     {(this.props.item.playCount!==undefined)?<PlayCircleOutlined/> :null}
                 </div>
-                <div style={{position:"absolute",top:'180px',left:"25px",color:"white"}}>
+                <div style={{position:"absolute",bottom:'66px',left:"25px",color:"white"}}>
                     {(this.props.item.author!==undefined)?<UserOutlined/>:null}
                     {(this.props.item.author!==undefined)?(this.props.item.author):null}
                 </div>

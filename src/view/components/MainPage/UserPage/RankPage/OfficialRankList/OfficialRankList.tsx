@@ -41,8 +41,7 @@ class OfficialRankList extends React.Component<any, any>{
                 <div style={{width:"80%"}}>
                     {this.props.rank.songs.map((item:Song,idx:number)=>(
                         <div
-                            style={{backgroundColor:(idx%2===0)?"rgba(0,0,0,0.05)":"white",cursor:"pointer"}}
-                            className="officialRankListItem"
+                            className={(idx%2===0)?"officialRankListItemEven":"officialRankListItemOdd"}
                             onClick={()=>{this.play(item.id)}}
                         >
                             <div style={{display:"flex",alignContent:"center"}}>

@@ -107,13 +107,17 @@ class NavBar extends React.Component<any, any>{
     }
 
     prev=()=>{
-        /*const path=this.props.location.pathname.split("/")
+        const path=this.props.location.pathname.split("/")
         path.shift()
         const page=path[0]
         const subPage=path[1]
         const key=path[2]
-        const searchDict=['singles','singers','albums','videos','song-lists','lyrics','users']*/
+        const searchDict=['singles','singers','albums','videos','song-lists','lyrics','users']
+        //if((page==="song-list" || page==="album") && this.state.searchValue.length){this.props.history.push("/search/"+this.state.searchValue+"/Infinity")}
+        //else if(page==="search" && key===this.state.searchValue){this.props.history.push("/search/"+this.state.searchValue+"/Infinity")}
+        //else {this.props.history.push("/user")}
         this.props.history.push("/user")
+        //this.props.history.goBack()
     }
 
     next=()=>{}

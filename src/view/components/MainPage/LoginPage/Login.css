@@ -13,7 +13,7 @@
     padding-top: 15px;
     display: flex;
     justify-content: flex-end;
-    color: black;
+    color: rgb(256,38,32);
     cursor: pointer;
 }
 #loginBack:hover{
