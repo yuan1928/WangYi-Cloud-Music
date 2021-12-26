@@ -73,8 +73,9 @@ class CarouselFigure extends React.Component<any, any>{
     }
 
     async getImgDataUrl(url:string,idx:number){
-        const res=await axios.get(url,{responseType:"blob"})
-        const dataUrl=URL.createObjectURL(res.data)
+        //const res=await axios.get(url,{responseType:"blob"})
+        //const dataUrl=URL.createObjectURL(res.data)
+        const dataUrl=url
         if(idx===this.state.imgNums-2)
         {
             this.state.backLeft[idx]=dataUrl
