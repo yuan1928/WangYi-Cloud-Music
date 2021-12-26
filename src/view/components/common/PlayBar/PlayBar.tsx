@@ -240,6 +240,7 @@ class PlayBar extends React.Component<any, any>{
                                         src={this.state.cur.img}
                                         style={{width:"50px",height:"50px",objectFit:"cover",borderRadius:"3px",cursor:'pointer'}}
                                         onClick={this.showDetail}
+                                        alt=""
                                     />
                                 </Tooltip>
                                 {

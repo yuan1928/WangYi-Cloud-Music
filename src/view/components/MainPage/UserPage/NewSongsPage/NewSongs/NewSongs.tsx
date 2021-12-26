@@ -91,7 +91,7 @@ class NewSongs extends React.Component<any, any>{
                             <div style={{width:"35%",display:"flex",alignItems:"center",marginRight:"20px"}}>
                                 <div style={{color:"rgba(0,0,0,0.4)",marginRight:"5px"}}>{item.idx}</div>
                                 <div style={{position:"relative",color:"white",marginRight:"5px"}}>
-                                    <img src={item.picUrl} style={{width:"60px",objectFit:"cover",borderRadius:"3px"}}/>
+                                    <img src={item.picUrl} style={{width:"60px",objectFit:"cover",borderRadius:"3px"}} alt=""/>
                                     <PlayCircleOutlined style={{position:"absolute",top:"25px",left:"25px"}}/>
                                 </div>
                                 <Tooltip title={(item.alia.length)?(item.name+"("+item.alia+")"):(item.name)}>

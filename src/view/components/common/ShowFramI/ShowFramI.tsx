@@ -11,7 +11,7 @@ class ShowFramI extends React.Component<any, any>{
     render() {
         return (
             <div className={this.props.className} key={this.props.item.id} onClick={()=>{this.click(this.props.item.id)}} style={{marginBottom:"20px"}}>
-                <img style={{width:"100%",objectFit:"cover",top:0,borderRadius:"5px",cursor:"pointer"}} src={this.props.item.imgUrl}/>
+                <img style={{width:"100%",objectFit:"cover",top:0,borderRadius:"5px",cursor:"pointer"}} src={this.props.item.imgUrl} alt=""/>
                 <div style={{textAlign:"start"}}>
                     {this.props.item.title}
                 </div>

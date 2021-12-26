@@ -1,5 +1,4 @@
 import React from "react";
-import MenuBar from "../MenuBar/MenuBar";
 import {getSingles,getSongUrl} from "../../../../../apis/searchPage";
 import {Progress, Table} from "antd";
 import {DownloadOutlined, HeartOutlined, SoundFilled } from "@ant-design/icons";

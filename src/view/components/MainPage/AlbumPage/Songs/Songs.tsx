@@ -2,7 +2,6 @@ import React from "react";
 import {getAlbumDetail} from "../../../../../apis/albumPage";
 import {DownloadOutlined, HeartOutlined} from "@ant-design/icons";
 import {getSongUrl, isSongValid} from "../../../../../apis/songListDetailPage";
-import {playMusicOfSongList} from "../../MainPage";
 import {playAlbumSong} from "../../MainPage";
 
 interface Song{

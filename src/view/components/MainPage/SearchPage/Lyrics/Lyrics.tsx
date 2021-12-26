@@ -1,6 +1,6 @@
 import React from "react";
 import {withRouter} from "react-router";
-import {getLyrics, getSingers} from "../../../../../apis/searchPage";
+import {getLyrics} from "../../../../../apis/searchPage";
 import './Lyrics.css'
 import {HeartOutlined, DownloadOutlined} from "@ant-design/icons";
 import {Pagination, Progress} from "antd";

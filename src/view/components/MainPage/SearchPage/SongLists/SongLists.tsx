@@ -1,6 +1,6 @@
 import React from "react";
 import {withRouter} from "react-router";
-import {getSingers, getSongLists} from "../../../../../apis/searchPage";
+import {getSongLists} from "../../../../../apis/searchPage";
 import './SongLists.css'
 import {PlayCircleOutlined} from "@ant-design/icons";
 import {Pagination} from "antd";
@@ -75,7 +75,7 @@ class SongLists extends React.Component<any, any>{
                             className={idx%2===0?"searchPageSongListsRowEven":"searchPageSongListsRowOdd"}
                             onClick={()=>{this.getSongListDetail(item.id)}}
                         >
-                            <img src={item.coverUrl} style={{width:"50px",objectFit:"cover",borderRadius:"3px",marginRight:"5px"}}/>
+                            <img src={item.coverUrl} style={{width:"50px",objectFit:"cover",borderRadius:"3px",marginRight:"5px"}} alt=""/>
                             <div style={{width:"50%",display:"flex",alignItems:"center"}}>
                                 {
                                     item.name.map(str=>{

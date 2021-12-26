@@ -1,7 +1,7 @@
 import React from "react";
 import 'antd/dist/antd.css'
 import './RecommendSongsList.css'
-import {RightOutlined,PlayCircleOutlined} from '@ant-design/icons'
+import {RightOutlined} from '@ant-design/icons'
 import {getRecommendSongsList} from "../../../../../../apis/recommendPage";
 import ShowFramI from "../../../../common/ShowFramI/ShowFramI";
 

@@ -80,7 +80,7 @@ class Header extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%",display:"flex",alignItems:"flex-start"}}>
-                <img src={this.state.imgUrl} style={{width:"20%",objectFit:"cover",borderRadius:"6px",marginRight:"10px"}}/>
+                <img src={this.state.imgUrl} style={{width:"20%",objectFit:"cover",borderRadius:"6px",marginRight:"10px"}} alt=""/>
                 <div style={{width:"68%"}}>
                     <div className="songListPageHeaderRow">
                         <div style={{padding:"0 5px 0 5px", color:"rgb(201,38,32)",marginRight:"6px",
@@ -90,7 +90,7 @@ class Header extends React.Component<any, any>{
                         <div style={{fontSize:"25px",fontWeight:"bolder"}}>{this.state.title}</div>
                     </div>
                     <div className="songListPageHeaderRow">
-                        <img src={this.state.creatorImg} style={{width:"40px",objectFit:"cover",borderRadius:"50%"}}/>
+                        <img src={this.state.creatorImg} style={{width:"40px",objectFit:"cover",borderRadius:"50%"}} alt=""/>
                         <div style={{color:"cornflowerblue",margin:"0 10px 0 3px"}}>{this.state.creator}</div>
                         <div style={{color:"rgba(0,0,0,0.4)"}}>{this.state.createTime}创建</div>
                     </div>

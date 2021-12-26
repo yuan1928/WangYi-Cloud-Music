@@ -1,5 +1,4 @@
 import React from "react";
-import icon from "../../../../assets/icon.png"
 import 'antd/dist/antd.css'
 import {Button, Tooltip, Input, Avatar} from "antd";
 import { LeftOutlined , RightOutlined, SearchOutlined, AudioOutlined, UserOutlined, SkinOutlined, SettingOutlined,
@@ -11,17 +10,17 @@ import {isLogin} from "../../MainPage/MainPage";
 import {loginEvent} from "../../MainPage/MainPage";
 import {logout} from "../../../../apis/LoginPage";
 import wyy from "../../../../assets/wyy.svg"
-import {getAccountInfo,getUserInfo} from "../../../../apis/LoginPage";
+import {getUserInfo} from "../../../../apis/LoginPage";
 
 const updateKeyword=new EventEmitter()
-interface Button{
+interface IButton{
     title:string,
     icon:any
 }
 interface State{
-    buttonGroup1:Button[],
-    buttonGroup2:Button[],
-    buttonGroup3:Button[],
+    buttonGroup1:IButton[],
+    buttonGroup2:IButton[],
+    buttonGroup3:IButton[],
     searchValue:string,
     clear:boolean,
     clearButtonActive:any,
@@ -107,17 +106,7 @@ class NavBar extends React.Component<any, any>{
     }
 
     prev=()=>{
-        const path=this.props.location.pathname.split("/")
-        path.shift()
-        const page=path[0]
-        const subPage=path[1]
-        const key=path[2]
-        const searchDict=['singles','singers','albums','videos','song-lists','lyrics','users']
-        //if((page==="song-list" || page==="album") && this.state.searchValue.length){this.props.history.push("/search/"+this.state.searchValue+"/Infinity")}
-        //else if(page==="search" && key===this.state.searchValue){this.props.history.push("/search/"+this.state.searchValue+"/Infinity")}
-        //else {this.props.history.push("/user")}
         this.props.history.push("/user")
-        //this.props.history.goBack()
     }
 
     next=()=>{}
@@ -126,7 +115,7 @@ class NavBar extends React.Component<any, any>{
         return (
             <div id="navRoot">
                 <div id="navLeft">
-                    <img style={{width:"180px",objectFit:"cover"}} src={wyy}/>
+                    <img style={{width:"180px",objectFit:"cover"}} src={wyy} alt=""/>
                 </div>
                 <div id="navCenter">
                     {
@@ -162,6 +151,7 @@ class NavBar extends React.Component<any, any>{
                                 src={this.state.avatarUrl}
                                 style={{width:"50px",height:"50px",objectFit:"cover",borderRadius:"50%"}}
                                 className="navItem"
+                                alt=""
                             />
                     }
                     {

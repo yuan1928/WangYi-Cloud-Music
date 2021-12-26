@@ -1,7 +1,6 @@
 import React from "react";
 import {withRouter} from "react-router";
-import {getSingers, getUsers} from "../../../../../apis/searchPage";
-import {UserOutlined} from "@ant-design/icons";
+import {getUsers} from "../../../../../apis/searchPage";
 import './Users.css'
 import {ManOutlined, WomanOutlined} from "@ant-design/icons";
 import {Pagination} from "antd";

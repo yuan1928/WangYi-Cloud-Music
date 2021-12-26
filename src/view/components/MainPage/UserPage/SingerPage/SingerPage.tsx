@@ -179,7 +179,7 @@ class SingerPage extends React.Component<any, any>{
                 {
                     this.state.curSingers.map((item)=>(
                         <div style={{width:'20%',padding:"15px 15px 0 0"}}>
-                            <img src={item.imgUrl} style={{width:"100%",objectFit:"cover",borderRadius:'3px'}}/>
+                            <img src={item.imgUrl} style={{width:"100%",objectFit:"cover",borderRadius:'3px'}} alt=""/>
                             <div>{item.name}</div>
                         </div>
                     ))

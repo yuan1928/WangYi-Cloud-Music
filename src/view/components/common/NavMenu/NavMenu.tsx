@@ -35,7 +35,7 @@ class NavMenu extends React.Component<any, any>{
                     {
                         this.props.menu.map((item:MenuItem)=>(
                             <Menu.Item key={item.key}>
-                                <a onClick={()=>{item.click()}}>{item.title}</a>
+                                <div onClick={()=>{item.click()}}>{item.title}</div>
                             </Menu.Item>
                         ))
                     }

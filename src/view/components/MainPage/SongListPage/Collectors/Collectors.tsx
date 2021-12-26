@@ -41,7 +41,7 @@ class Collectors extends React.Component<any, any>{
                 {
                     this.state.collectors.map(item=>(
                         <div style={{width:"28%",display:"flex",alignItems:"center",margin:"30px"}}>
-                            <img src={item.img} style={{width:"25%",objectFit:"cover",borderRadius:"50%"}}/>
+                            <img src={item.img} style={{width:"25%",objectFit:"cover",borderRadius:"50%"}} alt=""/>
                             <div style={{width:"70%",marginLeft:"30px",display:"flex",alignItems:"center",flexWrap:"wrap"}}>
                                 <div style={{width:"100%",display:"flex"}}>
                                     {item.name}

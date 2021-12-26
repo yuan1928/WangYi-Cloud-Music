@@ -1,6 +1,6 @@
 import React from "react";
 import {PlayCircleFilled, PlusOutlined, FileAddOutlined, ShareAltOutlined,
-    DownloadOutlined, CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
+    DownloadOutlined } from "@ant-design/icons";
 import {getAlbumDetail} from "../../../../../apis/albumPage";
 import './Header.css'
 

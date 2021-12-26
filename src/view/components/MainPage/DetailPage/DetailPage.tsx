@@ -207,7 +207,7 @@ class DetailPage extends React.Component<any, any>{
                                     onClick={()=>{this.play(item.id)}}
                                     className="detailPageSimilarSong"
                                 >
-                                    <img src={item.picUrl} style={{width:"30px",height:"30px",borderRadius:"3px",objectFit:"cover"}}/>
+                                    <img src={item.picUrl} style={{width:"30px",height:"30px",borderRadius:"3px",objectFit:"cover"}} alt=""/>
                                     <div style={{marginLeft:"5px",textAlign:"start",width:"300px", whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis",wordBreak:"keep-all"}}>
                                         <Tooltip title={item.title}>
                                             {item.title}

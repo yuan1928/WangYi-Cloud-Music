@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Input, Tooltip,Checkbox} from "antd";
 import {UserOutlined,EyeTwoTone,EyeInvisibleOutlined,CloseOutlined} from '@ant-design/icons';
-import {getValid,loginByValid,logout,loginByPassword} from "../../../../apis/LoginPage";
+import {getValid,loginByValid,loginByPassword} from "../../../../apis/LoginPage";
 import {loginEvent} from "../MainPage";
 import {isLogin} from "../MainPage";
 import {withRouter} from "react-router-dom";
@@ -104,12 +104,12 @@ class Login extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:'100%',display:"flex",justifyContent:"center",alignItems:"center"}}>
-                <img src={BG} width="100%" height="100%" style={{zIndex:'-100',position:'absolute',left:0,top:0}}/>
+                <img src={BG} width="100%" height="100%" style={{zIndex:'-100',position:'absolute',left:0,top:0}} alt=""/>
                 <div style={{width:'30%',padding:"50px",backgroundColor:"rgba(0,0,0,0.1)",borderRadius:"20px"}}>
                     <div style={{display:"flex",justifyContent:"space-between"}}>
                         <div style={{width:"60%",display:"flex",alignItems:"center"}}>
-                            <img src={icon} style={{width:"50%",objectFit:"cover"}}/>
-                            <img src={icon1} style={{width:"50%",objectFit:"cover"}}/>
+                            <img src={icon} style={{width:"50%",objectFit:"cover"}} alt=""/>
+                            <img src={icon1} style={{width:"50%",objectFit:"cover"}} alt=""/>
                         </div>
                         <div id="loginBack" onClick={()=>{this.props.history.push("/user")}}>
                             <Tooltip title="回到主页">

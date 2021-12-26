@@ -6,7 +6,7 @@ import SongslistPage from "./SongslistPage/SongslistPage";
 import RankPage from "./RankPage/RankPage";
 import SingerPage from "./SingerPage/SingerPage";
 import NewSongsPage from "./NewSongsPage/NewSongsPage";
-import {Route, Redirect, Router, BrowserRouter} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import {withRouter} from "react-router";
 
 interface State{

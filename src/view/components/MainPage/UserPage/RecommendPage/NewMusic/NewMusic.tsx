@@ -1,7 +1,7 @@
 import React from "react";
 import 'antd/dist/antd.css'
 import './NewMusic.css'
-import {RightOutlined,PlayCircleOutlined} from "@ant-design/icons";
+import {RightOutlined} from "@ant-design/icons";
 import {Tooltip} from "antd";
 import {getNewMusic} from "../../../../../../apis/recommendPage";
 import {getSongUrl, isSongValid} from "../../../../../../apis/songListDetailPage";
