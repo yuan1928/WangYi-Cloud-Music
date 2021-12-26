@@ -19,7 +19,7 @@ class ShowFramI extends React.Component<any, any>{
                     {(this.props.item.playCount!==undefined)?(Math.ceil(this.props.item.playCount/10000)+"万"):null}
                     {(this.props.item.playCount!==undefined)?<PlayCircleOutlined/> :null}
                 </div>
-                <div style={{position:"absolute",bottom:'66px',left:"25px",color:"white"}}>
+                <div style={{position:"absolute",bottom:'86px',left:"25px",color:"white"}}>
                     {(this.props.item.author!==undefined)?<UserOutlined/>:null}
                     {(this.props.item.author!==undefined)?(this.props.item.author):null}
                 </div>
