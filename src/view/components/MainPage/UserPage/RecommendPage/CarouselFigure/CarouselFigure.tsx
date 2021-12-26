@@ -3,7 +3,6 @@ import 'antd/dist/antd.css'
 import './CarouselFigure.css'
 import {CaretLeftOutlined,CaretRightOutlined} from '@ant-design/icons'
 import {getBanner} from "../../../../../../apis/recommendPage";
-import axios from "axios";
 
 import { Carousel } from 'antd';
 
