@@ -28,25 +28,22 @@ interface State{
     officialRankID:number[],
     globalRankID:number[],
     officialRank:Official[],
-    globalRank:Global[]
+    globalRank:Global[],
+    timer:any
 }
 class RankPage extends React.Component<any, any>{
     state:State={
         officialRankID:[],
         globalRankID:[],
         officialRank:[],
-        globalRank:[]
+        globalRank:[],
+        timer:null
     }
     componentDidMount() {
         this.getInfo()
     }
 
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
-        if(this.state.officialRank.length===0 || this.state.globalRank.length===0)
-        {
-            console.log('更新')
-            this.getInfo()
-        }
     }
 
     getInfo=()=>{
@@ -61,17 +58,14 @@ class RankPage extends React.Component<any, any>{
                 {this.state.globalRankID.push(rank.id)}
             }
         }).then(()=>{
-            //console.log(this.state.rankID);
-            Promise.all(this.state.officialRankID.map(id=>(this.getOfficialRank(id))))
-                .then(()=>{
-                    Promise.all(this.state.globalRankID.map(id=>(this.getGlobalRank(id))))
-                        .then(()=> {this.forceUpdate()})
-                })
-        },()=>{console.log('超时');this.forceUpdate()})
+            for(let id of this.state.officialRankID){this.getOfficialRank(id)}
+            for(let id of this.state.globalRankID){this.getGlobalRank(id)}
+            this.forceUpdate()
+        })
     }
 
     getOfficialRank=(id:number)=>{
-        return getRankInfo(id).then(res=>{
+        getRankInfo(id).then(res=>{
             this.state.officialRank.push({
                 name:res.data.playlist.name,
                 id:res.data.playlist.id,
@@ -83,11 +77,12 @@ class RankPage extends React.Component<any, any>{
                     id:item.id//不确定是item.id还是item.al.id
                 }))
             })
+            this.forceUpdate()
         })
     }
 
     getGlobalRank=(id:number)=>{
-        return getRankInfo(id).then(res=>{
+        getRankInfo(id).then(res=>{
             const data=res.data.playlist
             this.state.globalRank.push({
                 title:data.name,
@@ -96,6 +91,7 @@ class RankPage extends React.Component<any, any>{
                 description:data.description,
                 playCount:data.playCount
             })
+            this.forceUpdate()
         })
     }
 

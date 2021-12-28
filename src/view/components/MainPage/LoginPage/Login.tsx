@@ -27,7 +27,7 @@ class Login extends React.Component<any, any>{
         phone:"",
         valid:"",
         password:"",
-        byValid:true,
+        byValid:false,
         isAgree:false,
         sendValid:false,
         resetPhoneRef:React.createRef(),
@@ -200,6 +200,11 @@ class Login extends React.Component<any, any>{
                         <Checkbox onChange={()=>{this.setState({isAgree:!this.state.isAgree})}}>
                             <div style={{fontSize:"small",color:" rgba(0,0,0,0.6)"}}>同意相关服务条款</div>
                         </Checkbox>
+                    </div>
+                    <div style={{display:"flex",justifyContent:"flex-start",alignItems:"center",
+                                 fontSize:"8px",marginBottom:"10px",color:"rgba(0,0,0,0.4)"}}>
+                        <div style={{color:"rgba(234,38,32)",fontWeight:"bolder"}}>请注意：</div>
+                        由于接口限制，密码登录才能获取详细的账号信息
                     </div>
                     <div
                         onClick={this.submit}
