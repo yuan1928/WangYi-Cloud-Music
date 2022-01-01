@@ -1,0 +1,15 @@
+.accountPageHeaderRow{
+    width: 100%;
+    margin-bottom: 2px;
+}
+.accountPageHeaderButton{
+    width: 100px;
+    padding: 2px 6px 2px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    border: rgba(0,0,0,0.3) 1px solid;
+    color: rgba(0,0,0,0.6);
+    margin-right: 5px;
+}

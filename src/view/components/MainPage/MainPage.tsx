@@ -9,6 +9,7 @@ import SongListPage from "./SongListPage/SongListPage";
 import AlbumPage from "./AlbumPage/AlbumPage";
 import Login from "./LoginPage/Login";
 import PlayHistoryPage from "./PlayHistoryPage/PlayHistoryPage";
+import AccountPage from "./AccountPage/AccountPage";
 import EventEmitter from "events";
 import './MainPage.css'
 //import {Router} from "react-router";
@@ -89,6 +90,18 @@ class PlayHistory extends React.Component<any, any>{
         )
     }
 }
+class Account extends React.Component<any, any>{
+    render() {
+        return (
+            <>
+                <SideBar/>
+                <div id="content">
+                    <AccountPage />
+                </div>
+            </>
+        )
+    }
+}
 let isLogin=(window.localStorage.getItem("id")!==null)
 
 class MainPage extends React.Component<any, any>{
@@ -114,6 +127,7 @@ class MainPage extends React.Component<any, any>{
                             <Route path="/album/:id" component={Album}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/play-history" component={PlayHistory}/>
+                            <Route path="/account/:id" component={Account}/>
                             <Redirect to="/user"/>
                         </Switch>
                     </div>

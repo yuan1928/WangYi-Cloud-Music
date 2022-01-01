@@ -15,8 +15,16 @@ class ShowFramI extends React.Component<any, any>{
                 <div style={{textAlign:"start"}}>
                     {this.props.item.title}
                 </div>
+                {
+                    this.props.item.size!==undefined?
+                        <div style={{textAlign:"start",color:'rgba(0,0,0,0.4)'}}>
+                            {this.props.item.size}首
+                        </div>:null
+                }
                 <div style={{position:"absolute",top:'5px',right:"5px",color:"white"}}>
-                    {(this.props.item.playCount!==undefined)?(Math.ceil(this.props.item.playCount/10000)+"万"):null}
+                    {(this.props.item.playCount!==undefined && this.props.item.playCount>=10000)?
+                        (Math.ceil(this.props.item.playCount/10000)+"万"):null}
+                    {(this.props.item.playCount!==undefined && this.props.item.playCount<10000)? (this.props.item.playCount):null}
                     {(this.props.item.playCount!==undefined)?<PlayCircleOutlined/> :null}
                 </div>
                 <div style={{position:"absolute",bottom:'86px',left:"25px",color:"white"}}>

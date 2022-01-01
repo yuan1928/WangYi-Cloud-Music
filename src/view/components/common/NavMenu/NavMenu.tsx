@@ -14,13 +14,11 @@ interface State{
 }
 class NavMenu extends React.Component<any, any>{
     state:State={
-        current:this.props.menu[0].key,
+        current:(this.props.current===undefined)?this.props.menu[0].key:this.props.current,
         menu:React.createRef()
     }
 
     componentDidMount() {
-
-        console.log(this.state.menu);
     }
 
     render() {

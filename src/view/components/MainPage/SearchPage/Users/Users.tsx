@@ -70,8 +70,9 @@ class Users extends React.Component<any, any>{
                             <div style={{display:"flex",alignItems:"center"}}>
                                 <img
                                     src={item.avatarUrl}
-                                    style={{width:"60px",height:"60px",objectFit:"cover",borderRadius:"50%",marginRight:"5px"}}
+                                    style={{width:"60px",height:"60px",objectFit:"cover",borderRadius:"50%",marginRight:"5px",cursor:"pointer"}}
                                     alt=""
+                                    onClick={()=>{this.props.history.push("/account/"+item.id)}}
                                 />
                                 {
                                     item.name.map(str=>{

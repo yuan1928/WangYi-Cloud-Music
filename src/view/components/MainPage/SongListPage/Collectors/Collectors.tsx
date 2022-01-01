@@ -1,6 +1,7 @@
 import React from "react";
 import {getSongListDetailInfo} from "../../../../../apis/songListDetailPage";
 import {ManOutlined,WomanOutlined} from "@ant-design/icons"
+import {withRouter} from "react-router";
 
 interface Collector{
     id:number,
@@ -41,7 +42,12 @@ class Collectors extends React.Component<any, any>{
                 {
                     this.state.collectors.map(item=>(
                         <div style={{width:"28%",display:"flex",alignItems:"center",margin:"30px"}}>
-                            <img src={item.img} style={{width:"25%",objectFit:"cover",borderRadius:"50%"}} alt=""/>
+                            <img
+                                src={item.img}
+                                style={{width:"25%",objectFit:"cover",borderRadius:"50%",cursor:"pointer"}}
+                                alt=""
+                                onClick={()=>{this.props.history.push("/account/"+item.id)}}
+                            />
                             <div style={{width:"70%",marginLeft:"30px",display:"flex",alignItems:"center",flexWrap:"wrap"}}>
                                 <div style={{width:"100%",display:"flex"}}>
                                     {item.name}
@@ -60,4 +66,4 @@ class Collectors extends React.Component<any, any>{
     }
 }
 
-export default Collectors
+export default withRouter(Collectors)
