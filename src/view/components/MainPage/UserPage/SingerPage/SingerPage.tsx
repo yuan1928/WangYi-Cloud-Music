@@ -2,6 +2,7 @@ import React from "react";
 import {getSingers} from "../../../../../apis/singerPage";
 import './singerPage.css'
 import {Pagination} from "antd";
+import {withRouter} from "react-router";
 
 interface Button{
     name:string,
@@ -179,7 +180,12 @@ class SingerPage extends React.Component<any, any>{
                 {
                     this.state.curSingers.map((item)=>(
                         <div style={{width:'20%',padding:"15px 15px 0 0"}}>
-                            <img src={item.imgUrl} style={{width:"100%",objectFit:"cover",borderRadius:'3px'}} alt=""/>
+                            <img
+                                src={item.imgUrl}
+                                style={{width:"100%",objectFit:"cover",borderRadius:'3px',cursor:"pointer"}}
+                                alt=""
+                                onClick={()=>{this.props.history.push("/singer/"+item.id)}}
+                            />
                             <div>{item.name}</div>
                         </div>
                     ))
@@ -197,4 +203,4 @@ class SingerPage extends React.Component<any, any>{
     }
 }
 
-export default SingerPage
+export default withRouter(SingerPage)

@@ -1,0 +1,18 @@
+.singerDetailPageAlbumListRowOdd,.singerDetailPageAlbumListRowEven{
+    width: 100%;
+    padding: 3px 6px 3px 6px;
+    display: flex;
+    align-items: center;
+    border-radius: 3px;
+}
+.singerDetailPageAlbumListRowEven{
+    background-color: rgba(0,0,0,0.05);
+}
+.singerDetailPageAlbumListRowOdd:hover,.singerDetailPageAlbumListRowEven:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+}
+.singerDetailPageAlbumListRowItem{
+    color:rgba(0,0,0,0.6);
+    text-align: start;
+}

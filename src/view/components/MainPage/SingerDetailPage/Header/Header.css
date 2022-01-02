@@ -1,0 +1,22 @@
+.singerDetailPageHeaderRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.singerDetailPageHeaderRowItem{
+    color: dimgray;
+    padding: 2px 6px 2px 6px;
+    margin-right: 5px;
+}
+.singerDetailPageHeaderRowButton{
+    color: dimgray;
+    padding: 1px 6px 1px 6px;
+    margin-right: 5px;
+    border: rgba(0,0,0,0.2) 1px solid;
+    border-radius: 20px;
+}
+.singerDetailPageHeaderRowButton:hover{
+    cursor: pointer;
+    color: black;
+}

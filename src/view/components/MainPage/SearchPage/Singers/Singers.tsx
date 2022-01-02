@@ -67,6 +67,7 @@ class Singers extends React.Component<any, any>{
                                     src={item.avatarUrl}
                                     style={{width:"60px",height:"60px",objectFit:"cover",borderRadius:"50%",marginRight:"5px"}}
                                     alt=""
+                                    onClick={()=>{this.props.history.push("/singer/"+item.id)}}
                                 />
                                 {
                                     item.name.map(str=>{
