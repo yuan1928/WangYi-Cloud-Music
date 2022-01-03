@@ -63,7 +63,7 @@ class Albums extends React.Component<any, any>{
                         cover:data.picUrl,
                         songs:songs
                     })
-                    console.log("update");this.forceUpdate()
+                    this.forceUpdate()
                 })
             }
         }).then(()=>{})
@@ -77,15 +77,15 @@ class Albums extends React.Component<any, any>{
     }
 
     render() {
-        console.log(this.state.albums.length);
         return (
             <div style={{width:"100%"}}>
                 <Header current="1"/>
-                {this.state.albums.map(item=>(<AlbumFrame album={item}/>))}
+                {this.state.albums.map(item=>(<AlbumFrame album={item} singerID={this.state.id}/>))}
                 <div style={{width:"100%"}}>
                     <Pagination
                         defaultCurrent={1}
                         total={this.state.total}
+                        pageSize={10}
                         onChange={(page)=>{
                             this.setState(()=>({curPage:page,albums:[],albumsId:[]}),()=>{this.getCurList()})
                         }}

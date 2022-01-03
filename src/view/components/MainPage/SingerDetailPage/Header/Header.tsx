@@ -37,7 +37,7 @@ class Header extends React.Component<any, any>{
         getSingerInfo(this.state.id).then(res=>{
             const data=res.data.data.artist
             this.setState(()=>({
-                uid:res.data.data.user.userId,
+                uid:(res.data.data.user!==undefined)?res.data.data.user.userId:-1,
                 avatar:data.cover,
                 name:data.name,
                 singleCount:data.musicSize,
@@ -65,7 +65,12 @@ class Header extends React.Component<any, any>{
                             </div>
                             <div
                                 className="singerDetailPageHeaderRowButton"
-                                 onClick={()=>{this.props.history.push("/account/"+this.state.uid)}}
+                                 onClick={()=>
+                                 {
+                                     if(this.state.uid!==-1)
+                                     {this.props.history.push("/account/"+this.state.uid)}
+                                     else {alert("该用户无个人主页")}
+                                 }}
                             >
                                 <UserOutlined />
                                 个人主页

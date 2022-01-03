@@ -33,7 +33,8 @@ interface State{
     keyword:string,
     selectedRow:number,
     songListID:number,
-    albumID:number
+    albumID:number,
+    singerID:number
 }
 interface SongInfo{
     img:string,
@@ -66,7 +67,8 @@ class PlayBar extends React.Component<any, any>{
         keyword:"",
         selectedRow:Infinity,
         songListID:Infinity,
-        albumID:Infinity
+        albumID:Infinity,
+        singerID:Infinity
     }
 
     componentDidMount() {
@@ -105,6 +107,12 @@ class PlayBar extends React.Component<any, any>{
         })
         this.props.replayEvent.addListener("play",(id:number, url:string)=>{
             this.setState(()=>({musicUrl:url, musicID:id, keyword:"$replay", selectedRow:Infinity, isPause:false,endTime:"00:00",isPlaying:true}),()=>{
+                this.getSongInfo()
+                this.play()
+            })
+        })
+        this.props.playSingerSongEvent.addListener("play",(id:number, url:string, singerId:number)=>{
+            this.setState(()=>({musicUrl:url, musicID:id, keyword:"$singer", selectedRow:Infinity, isPause:false,endTime:"00:00",isPlaying:true, singerID:singerId}),()=>{
                 this.getSongInfo()
                 this.play()
             })
@@ -211,6 +219,7 @@ class PlayBar extends React.Component<any, any>{
             else if(keyword==="$new-song")this.props.history.push("/user/new-song")
             else if(keyword==="$user" || keyword==="$another-song")this.props.history.push("/user")
             else if(keyword==="$replay")this.props.history.push("/play-history")
+            else if(keyword==="$singer")this.props.history.push("/singer/"+this.state.singerID)
             else {this.props.history.push("/search/"+this.state.keyword+"/"+this.state.selectedRow)}
         }
     }

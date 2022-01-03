@@ -23,10 +23,24 @@ export function getAlbum(id:number){
     })
 }
 
-//MV
-export function getMVs(id:number){
+export function isMusicUsable(id:number){
     return request({
-        url:"/artist/mv?id="+id,
+        url:'/check/music?id='+id,
+        method:'get'
+    })
+}
+
+export function getMusicUrl(id:number){
+    return request({
+        url:'/song/url?id='+id,
+        method:'get'
+    })
+}
+
+//MV
+export function getMVs(id:number,offset:number){
+    return request({
+        url:"/artist/mv?limit=20&id="+id+"&offset="+offset,
         method:"get"
     })
 }

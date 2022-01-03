@@ -13,6 +13,12 @@ interface State{
 class SingerDetailPage extends React.Component<any, any>{
     state:State={id:this.props.match.params.id}
 
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+        //console.log(this.props.location.pathname,this.props.match.params.id);
+        if(["album","mv","description","similar"].indexOf(this.props.match.params.id)===-1)
+        {this.setState({id:this.props.match.params.id})}
+    }
+
     render() {
         return (
             <div  style={{width:"100%", height:"80vh", overflowY:"scroll",padding:"20px"}}>

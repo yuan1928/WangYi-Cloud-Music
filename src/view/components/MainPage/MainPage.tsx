@@ -23,6 +23,7 @@ const playSingleSong=new EventEmitter()
 const playAlbumSong=new EventEmitter()
 const loginEvent=new EventEmitter()
 const replayEvent=new EventEmitter()
+const playSingerSong=new EventEmitter()
 
 class User extends React.Component<any, any>{
     render() {
@@ -153,6 +154,7 @@ class MainPage extends React.Component<any, any>{
                                     playSingleSongEvent={playSingleSong}
                                     playAlbumSongEvent={playAlbumSong}
                                     replayEvent={replayEvent}
+                                    playSingerSongEvent={playSingerSong}
                         />
                     </div>
                 </div>
@@ -163,4 +165,4 @@ class MainPage extends React.Component<any, any>{
 }
 
 export default withRouter(MainPage)
-export {playMusicOfSongList,playSingleSong,playMusicEvent,playAlbumSong,isLogin,loginEvent,replayEvent}
+export {playMusicOfSongList,playSingleSong,playMusicEvent,playAlbumSong,isLogin,loginEvent,replayEvent,playSingerSong}
