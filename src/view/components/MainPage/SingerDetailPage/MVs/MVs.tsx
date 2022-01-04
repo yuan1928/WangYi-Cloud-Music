@@ -46,7 +46,7 @@ class MVs extends React.Component<any, any>{
                         duration:this.getDuration(mv.duration)
                     })
                 }
-                this.forceUpdate()
+            this.forceUpdate()
             }
         )
     }
@@ -67,7 +67,12 @@ class MVs extends React.Component<any, any>{
                     {
                         this.state.mvs.map(item=>(
                             <div style={{width:"20%",padding:"10px",position:"relative"}}>
-                                <img src={item.cover} style={{width:'100%',objectFit:"cover",borderRadius:'3px'}} alt=""/>
+                                <img
+                                    src={item.cover}
+                                    style={{width:'100%',objectFit:"cover",borderRadius:'3px',cursor:"pointer"}}
+                                    alt=""
+                                    onClick={()=>{this.props.history.push("/mv/"+item.id+"/mv")}}
+                                />
                                 <Tooltip title={item.title}>
                                     <div
                                         style={{marginTop:"5x",textAlign:"start",whiteSpace:"nowrap",

@@ -5,6 +5,8 @@ import {Pagination, Tooltip} from "antd";
 import {PlayCircleOutlined} from "@ant-design/icons";
 
 interface Video{
+    id:string|number,
+    type:string,
     name:string,
     nameArr:string[],
     playCount:number,
@@ -35,6 +37,8 @@ class Videos extends React.Component<any, any>{
                 for(let video of res.data.result.videos)
                 {
                     this.state.videos.push({
+                        id:video.vid,
+                        type:(typeof video.vid==="string")?'video':"mv",
                         name:video.title,
                         nameArr:video.title.replace(reg,"$#"+this.state.keyword+"#$").split("$"),
                         playCount:video.playTime,//不确定
@@ -76,8 +80,9 @@ class Videos extends React.Component<any, any>{
                             <div style={{width:"25%",padding:"10px",position:"relative"}}>
                                 <img
                                     src={item.coverUrl}
-                                    style={{width:"100%",height:"200px",objectFit:"cover",borderRadius:"3px",marginBottom:"3px"}}
+                                    style={{width:"100%",height:"200px",objectFit:"cover",borderRadius:"3px",marginBottom:"3px",cursor:"pointer"}}
                                     alt=""
+                                    onClick={()=>{this.props.history.push("/mv/"+item.id+"/"+item.type)}}
                                 />
                                 <Tooltip title={item.name}>
                                     <div style={{display:"flex",alignItems:"center",justifyContent:"flex-start",cursor:"pointer"}}>

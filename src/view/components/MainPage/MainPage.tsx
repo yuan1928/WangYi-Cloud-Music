@@ -11,6 +11,7 @@ import Login from "./LoginPage/Login";
 import PlayHistoryPage from "./PlayHistoryPage/PlayHistoryPage";
 import AccountPage from "./AccountPage/AccountPage";
 import SingerDetailPage from "./SingerDetailPage/SingerDetailPage";
+import MvPage from "./MvPage/MvPage";
 import EventEmitter from "events";
 import './MainPage.css'
 //import {Router} from "react-router";
@@ -116,6 +117,18 @@ class Singer extends React.Component<any, any>{
         )
     }
 }
+class Mv extends React.Component<any, any>{
+    render() {
+        return (
+            <>
+                <SideBar/>
+                <div id="content">
+                    <MvPage />
+                </div>
+            </>
+        )
+    }
+}
 let isLogin=(window.localStorage.getItem("id")!==null)
 
 class MainPage extends React.Component<any, any>{
@@ -143,6 +156,7 @@ class MainPage extends React.Component<any, any>{
                             <Route path="/play-history" component={PlayHistory}/>
                             <Route path="/account/:id" component={Account}/>
                             <Route path="/singer/:id" component={Singer}/>
+                            <Route path="/mv/:id/:type" component={Mv}/>
                             <Redirect to="/user"/>
                         </Switch>
                     </div>
