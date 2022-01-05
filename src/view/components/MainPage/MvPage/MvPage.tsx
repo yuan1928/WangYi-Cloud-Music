@@ -10,16 +10,18 @@ class MvPage extends React.Component<any, any>{
         return (
             <div  style={{width:"100%", height:"80vh", overflowY:"scroll",padding:"20px"}}>
                 <div style={{width:"100%",display:"flex"}}>
-                    <div style={{width:"70%"}}>
+                    <div style={{width:"60%"}}>
                         <Player/>
                         <Info/>
                     </div>
-                    <div style={{width:"30%"}}>
+                    <div style={{width:"40%"}}>
                         <Similar/>
                     </div>
                 </div>
-                <div style={{width:"100%"}}>
-                    <Comments/>
+                <div style={{width:"60%"}}>
+                    <div style={{width:"70%",marginLeft:"30%"}}>
+                        <Comments/>
+                    </div>
                 </div>
             </div>
         )

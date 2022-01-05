@@ -1,0 +1,26 @@
+.MvPageInfoRow{
+    width: 70%;
+    margin-left: 30%;
+    padding: 5px 0 5px 0;
+}
+.MvPageInfoRowButtonI{
+    padding: 2px 6px 2px 6px;
+    color: rgb(201,38,32);
+    background-color: rgba(256,0,0,0.1);
+    border-radius: 10px;
+    margin-right: 5px;
+}
+.MvPageInfoRowButtonII{
+    padding: 3px 8px 3px 8px;
+    color: black;
+    border: gray solid 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.MvPageInfoRowTag{
+    padding: 1px 3px 1px 3px;
+    color: dimgray;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-right: 5px;
+}

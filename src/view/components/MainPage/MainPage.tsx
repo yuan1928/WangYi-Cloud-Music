@@ -121,8 +121,7 @@ class Mv extends React.Component<any, any>{
     render() {
         return (
             <>
-                <SideBar/>
-                <div id="content">
+                <div style={{width:"100vw",height:'84vh'}}>
                     <MvPage />
                 </div>
             </>

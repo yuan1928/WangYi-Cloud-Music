@@ -115,6 +115,7 @@ class Header extends React.Component<any, any>{
                     </div>
                     <div className="songListPageHeaderRow">
                         标签：
+                        {this.state.tag.length===0?"无":null}
                         {this.state.tag.map((item,idx)=>(
                             <>
                                 {
@@ -127,10 +128,11 @@ class Header extends React.Component<any, any>{
                     </div>
                     <div className="songListPageHeaderRow">
                         <div style={{marginRight:"20px"}}>歌曲：{this.state.songsCount}</div>
-                        播放：{Math.floor(this.state.playCount/10000)}万
+                        播放：{(this.state.playCount>=10000)?Math.floor(this.state.playCount/10000)+"万":this.state.playCount}
                     </div>
                     <div className="songListPageHeaderRow">
                         简介：
+                        {this.state.description.length===0?"无":null}
                         {
                             this.state.description.length<=100?
                                 <>{this.state.description}</>:

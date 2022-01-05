@@ -37,6 +37,26 @@ class Player extends React.Component<any, any>{
         {video.addEventListener("timeupdate",this.updateControls)}
     }
 
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+        if(this.props.match.params.id!==this.state.id)
+        {
+            this.setState(()=>({
+                id:this.props.match.params.id,
+                type:this.props.match.params.type,
+                url:"",
+                isPause:false,
+                curTime:"00:00",
+                endTime:"00:00",
+                mouseDown:false
+            }),()=>{this.getSrc()})
+        }
+    }
+
+    componentWillUnmount() {
+        const video=document.getElementById("video")
+        video.removeEventListener("timeupdate",()=>{})
+    }
+
     getSrc=()=>{
         if(this.state.type==="mv")
         {
@@ -82,16 +102,19 @@ class Player extends React.Component<any, any>{
     updateControls=()=>{
         const player=this.state.videoRef.current
         const progress=this.state.progressRef.current
-        //更新当前时间
-        this.setState({curTime:this.getTime(player.currentTime)})
-        //更新终止时间
-        if(this.state.endTime==="00:00" && !isNaN(player.duration))
-        {this.setState({endTime:this.getTime(player.duration)})}
-        //更新进度条
-        progress.style.width=String(100*player.currentTime/player.duration)+"%"
-        //更新isPause
-        if(player.currentTime===player.duration)
-        {this.setState({isPause:true})}
+        if(player && progress)
+        {
+            //更新当前时间
+            this.setState({curTime:this.getTime(player.currentTime)})
+            //更新终止时间
+            if(this.state.endTime==="00:00" && !isNaN(player.duration))
+            {this.setState({endTime:this.getTime(player.duration)})}
+            //更新进度条
+            progress.style.width=String(100*player.currentTime/player.duration)+"%"
+            //更新isPause
+            if(player.currentTime===player.duration)
+            {this.setState({isPause:true})}
+        }
     }
 
     click=(e:any)=>{
@@ -114,12 +137,12 @@ class Player extends React.Component<any, any>{
 
     render() {
         return (
-            <div style={{width:"100%",border:"red solid"}}>
-                <div style={{width:"70%",backgroundColor:"black",padding:"30px",marginLeft:"20%"}}>
+            <div style={{width:"100%"}}>
+                <div style={{width:"70%",backgroundColor:"black",padding:"5px 30px 5px 30px",marginLeft:"30%"}}>
                     <video autoPlay src={this.state.url} ref={this.state.videoRef} id="video" width="100%"/>
                 </div>
                 <div
-                    style={{width:"70%",height:"20px",marginLeft:"20%",backgroundColor:"rgba(0,0,0,0.95)",cursor:"pointer"}}
+                    style={{width:"70%",height:"10px",marginLeft:"30%",backgroundColor:"rgba(0,0,0,0.95)",cursor:"pointer"}}
                     ref={this.state.progressBGRef}
                     onClick={(e)=>{this.click(e)}}
                     onMouseDown={()=>{this.setState({mouseDown:true})}}
@@ -131,7 +154,7 @@ class Player extends React.Component<any, any>{
                         <div style={{width:"6px",height:"6px",borderRadius:'3px',backgroundColor:"rgb(201,38,32)"}}/>
                     </div>
                 </div>
-                <div style={{width:"70%",marginLeft:"20%",padding:"5px 10px 10px 10px",backgroundColor:"rgba(0,0,0,0.95)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                <div style={{width:"70%",marginLeft:"30%",padding:"0 10px 10px 10px",backgroundColor:"rgba(0,0,0,0.95)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                     <div onClick={()=>{this.play()}} style={{color:"rgba(256,256,256,0.8)",cursor:"pointer"}}>
                         {this.state.isPause?<PlayCircleOutlined/>:<PauseOutlined/>}
                     </div>

@@ -15,9 +15,9 @@ export function getVideoUrl(id:string){
     })
 }
 
-export function getVideoComments(id:string){
+export function getVideoComments(id:string,offset:number){
     return request({
-        url:"/video/detail/info?vid="+id,
+        url:"/comment/video?limit=10&id="+id+"&offset="+offset,
         method:"get",
     })
 }
@@ -44,9 +44,9 @@ export function getMvUrl(id:string){
     })
 }
 
-export function getMvComments(id:string){
+export function getMvComments(id:string,offset:number){
     return request({
-        url:"/mv/detail/info?mvid="+id,
+        url:"/mv/detail/info?limit=20&mvid="+id+"&offset="+offset,
         method:"get",
     })
 }
