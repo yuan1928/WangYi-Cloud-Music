@@ -1,6 +1,5 @@
 import React from "react";
 import "./SearchPage.css"
-import MenuBar from "./MenuBar/MenuBar";
 import {playMusicEvent} from "../MainPage";
 import {Route, Redirect,withRouter} from "react-router-dom";
 import Singles from "./Singles/Singles";
