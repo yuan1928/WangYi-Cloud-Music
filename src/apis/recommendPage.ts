@@ -28,7 +28,7 @@ export function getPersonalBroadcast(){
 export function getMV(){
     return request(
         {
-            url:"/personalized?limit=4",
+            url:"/personalized/mv",
             method:"get"
         }
     )

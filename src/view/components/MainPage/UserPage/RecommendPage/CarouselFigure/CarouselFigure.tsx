@@ -75,23 +75,23 @@ class CarouselFigure extends React.Component<any, any>{
         //const res=await axios.get(url,{responseType:"blob"})
         //const dataUrl=URL.createObjectURL(res.data)
         const dataUrl=url
-        if(idx===this.state.imgNums-2)
+        if(idx===0)
         {
-            this.state.backLeft[idx]=dataUrl
-            this.state.backCenter[idx+1]=dataUrl
-            this.state.backRight[0]=dataUrl
+            this.state.backLeft[idx+1]=dataUrl
+            this.state.backCenter[idx]=dataUrl
+            this.state.backRight[this.state.imgNums-1]=dataUrl
         }
         else if(idx===this.state.imgNums-1)
         {
-            this.state.backLeft[idx]=dataUrl
-            this.state.backCenter[0]=dataUrl
-            this.state.backRight[1]=dataUrl
+            this.state.backLeft[0]=dataUrl
+            this.state.backCenter[idx]=dataUrl
+            this.state.backRight[idx-1]=dataUrl
         }
         else
         {
-            this.state.backLeft[idx]=dataUrl
-            this.state.backCenter[idx+1]=dataUrl
-            this.state.backRight[idx+2]=dataUrl
+            this.state.backLeft[idx+1]=dataUrl
+            this.state.backCenter[idx]=dataUrl
+            this.state.backRight[idx-1]=dataUrl
         }
     }
 
