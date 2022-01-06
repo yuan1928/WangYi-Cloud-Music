@@ -4,6 +4,7 @@ import {getSingers} from "../../../../../apis/searchPage";
 import {UserOutlined} from "@ant-design/icons";
 import './Singers.css'
 import {Pagination} from "antd";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Singer{
     id:number,
@@ -56,6 +57,7 @@ class Singers extends React.Component<any, any>{
     render() {
         return (
             <div  style={{width:"100%"}}>
+                <MenuBar keyword={this.state.keyword} current="2"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}位歌手
                 </span>

@@ -1,5 +1,4 @@
 import React from "react";
-import MenuBar from "./MenuBar/MenuBar";
 import RecommendPage from "./RecommendPage/RecommendPage";
 import PersonalPage from "./PersonalPage/PersonalPage";
 import SongslistPage from "./SongslistPage/SongslistPage";
@@ -19,7 +18,6 @@ class UserPage extends React.Component<any, any>{
     render() {
         return (
                 <div id="userRoot">
-                    <MenuBar/>
                     <Route path="/user/user" component={RecommendPage}/>
                     <Route path="/user/personal" component={PersonalPage}/>
                     <Route path="/user/songs" component={SongslistPage}/>

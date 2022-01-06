@@ -2,6 +2,7 @@ import React from "react";
 import {getSongsList} from "../../../../../apis/personalPage";
 import ShowFramI from "../../../common/ShowFramI/ShowFramI";
 import './PersonalPage.css'
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Item{
     id:number,
@@ -35,6 +36,9 @@ class PersonalPage extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%", height:"80vh", display:"flex",flexWrap:"wrap",position:"relative",overflowY:"scroll"}}>
+                <div style={{width:"100%",marginBottom:'10px'}}>
+                    <MenuBar current="2"/>
+                </div>
                 <div style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex",padding:"20px"}}>
                     你的雷达歌单
                 </div>

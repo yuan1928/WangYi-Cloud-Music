@@ -20,8 +20,8 @@ class MenuBar extends React.Component<any, any>{
     }
     render() {
         return (
-            <div>
-                <NavMenu menu={this.state.menuItem}/>
+            <div style={{marginBottom:'10px'}}>
+                <NavMenu menu={this.state.menuItem} current={this.props.current}/>
             </div>
         )
     }

@@ -6,6 +6,7 @@ import './Singles.css'
 import Keyword from "./Keyword";
 import {withRouter} from "react-router";
 import axios from "axios";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface State{
     keyword:string,
@@ -197,6 +198,7 @@ class Singles extends React.Component<any, any>{
     render() {
         return (
             <div>
+                <MenuBar keyword={this.state.keyword} current="1"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}首单曲
                 </span>

@@ -3,6 +3,7 @@ import {Route,withRouter,Redirect} from "react-router-dom";
 import NewSongs from "./NewSongs/NewSongs";
 import NewCDs from "./NewCDs/NewCDs";
 import './NewSongsPage.css'
+import MenuBar from "../MenuBar/MenuBar";
 
 interface State{
     newSongButtonRef:any,
@@ -24,34 +25,38 @@ class NewSongsPage extends React.Component<any, any>{
 
     render() {
         return (
-            <div
-                style={{width:"100%", height:"80vh", display:"flex",flexWrap:"wrap",justifyContent:"center",
-                        position:"relative",overflowY:"scroll",padding:'20px'}}
-            >
+            <div style={{width:"100%", height:"80vh",overflowY:"scroll"}}>
+                <div style={{width:"100%"}}>
+                    <MenuBar current="6"/>
+                </div>
                 <div
-                    style={{width:"30%",height:'30px',border:"rgba(0,0,0,0.2) solid 0.5px",
-                            borderRadius:"10px",display:"flex",alignItems:"center",justifySelf:"center"}}
+                    style={{width:"100%", display:"flex",flexWrap:"wrap",justifyContent:"center", position:"relative",padding:'20px'}}
                 >
                     <div
-                        ref={this.state.newSongButtonRef}
-                        onClick={()=>{this.click("song")}}
-                        id="newSongsPageSelectedButton"
+                        style={{width:"30%",height:'30px',border:"rgba(0,0,0,0.2) solid 0.5px",
+                            borderRadius:"10px",display:"flex",alignItems:"center",justifySelf:"center"}}
                     >
-                        新歌速递
+                        <div
+                            ref={this.state.newSongButtonRef}
+                            onClick={()=>{this.click("song")}}
+                            id="newSongsPageSelectedButton"
+                        >
+                            新歌速递
+                        </div>
+                        <div
+                            ref={this.state.newCdButtonRef}
+                            onClick={()=>{this.click("cd")}}
+                            id="newSongsPageAnotherButton"
+                        >
+                            新碟上架
+                        </div>
                     </div>
-                    <div
-                        ref={this.state.newCdButtonRef}
-                        onClick={()=>{this.click("cd")}}
-                        id="newSongsPageAnotherButton"
-                    >
-                        新碟上架
-                    </div>
+
+                    <Route path="/user/new/song" component={NewSongs}/>
+                    <Route path="/user/new/cd" component={NewCDs}/>
+                    {this.props.location.pathname==="/user/new"? <Redirect to="/user/new/song"/>:null}
+
                 </div>
-
-                <Route path="/user/new/song" component={NewSongs}/>
-                <Route path="/user/new/cd" component={NewCDs}/>
-                {this.props.location.pathname==="/user/new"? <Redirect to="/user/new/song"/>:null}
-
             </div>
         )
     }

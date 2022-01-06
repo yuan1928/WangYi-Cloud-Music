@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {getAlbums} from "../../../../../apis/searchPage";
 import './Albums.css'
 import {Pagination} from "antd";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Album{
     id:number,
@@ -69,6 +70,7 @@ class Albums extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%"}}>
+                <MenuBar keyword={this.state.keyword} current="3"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}张专辑
                 </span>

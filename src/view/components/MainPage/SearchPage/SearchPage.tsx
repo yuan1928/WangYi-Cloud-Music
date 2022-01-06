@@ -40,7 +40,6 @@ class SearchPage extends React.Component<any, any>{
         console.log(this.props.location.pathname,this.state.keyword);
         return (
             <div id="searchRoot" style={{width:"100%", overflowY:"scroll"}}>
-                <MenuBar keyword={this.state.keyword}/>
                 <Route path="/search/singles/:keyword" component={SinglesWithEvent}/>
                 <Route path="/search/singers/:keyword" component={Singers}/>
                 <Route path="/search/albums/:keyword" component={Albums}/>

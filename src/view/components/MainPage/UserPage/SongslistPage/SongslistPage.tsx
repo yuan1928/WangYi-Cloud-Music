@@ -4,6 +4,7 @@ import ShowFramI from "../../../common/ShowFramI/ShowFramI";
 import './SongslistPage.css'
 import {Pagination} from "antd";
 import {RightOutlined} from "@ant-design/icons";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Item{
     playCount:number,
@@ -69,6 +70,9 @@ class SongslistPage extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%", height:"80vh", display:"flex",flexWrap:"wrap",position:"relative",overflowY:"scroll"}}>
+                <div style={{width:"100%",marginBottom:"10px"}}>
+                    <MenuBar current="3"/>
+                </div>
                 <div style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex",padding:"20px"}}>
                     精品歌单
                 </div>

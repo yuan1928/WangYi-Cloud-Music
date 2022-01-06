@@ -4,6 +4,7 @@ import {getLyrics} from "../../../../../apis/searchPage";
 import './Lyrics.css'
 import {HeartOutlined, DownloadOutlined} from "@ant-design/icons";
 import {Pagination, Progress} from "antd";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Lyric{
     idx:number,
@@ -103,6 +104,7 @@ class Lyrics extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%"}}>
+                <MenuBar keyword={this.state.keyword} current="6"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}首歌词
                 </span>

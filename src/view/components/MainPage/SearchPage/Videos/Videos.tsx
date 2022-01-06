@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {getVideos} from "../../../../../apis/searchPage";
 import {Pagination, Tooltip} from "antd";
 import {PlayCircleOutlined} from "@ant-design/icons";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Video{
     id:string|number,
@@ -71,6 +72,7 @@ class Videos extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%"}}>
+                <MenuBar keyword={this.state.keyword} current="4"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}个视频
                 </span>

@@ -106,7 +106,8 @@ class NavBar extends React.Component<any, any>{
     }
 
     prev=()=>{
-        this.props.history.push("/user")
+        //this.props.history.push("/user")
+        this.props.history.goBack()
     }
 
     next=()=>{}

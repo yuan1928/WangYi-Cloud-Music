@@ -3,6 +3,7 @@ import {getOfficialRanks,getRankInfo} from "../../../../../apis/rankPage";
 import OfficialRankList from "./OfficialRankList/OfficialRankList";
 import ShowFramI from "../../../common/ShowFramI/ShowFramI";
 import './RankPage.css'
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Song{
     title:string,
@@ -100,19 +101,23 @@ class RankPage extends React.Component<any, any>{
         return (
             <div
                 style={{width:"100%", height:"80vh", display:"flex",flexWrap:"wrap",
-                    justifyContent:"center",position:"relative",overflowY:"scroll",padding:'20px'}}>
+                    justifyContent:"center",position:"relative",overflowY:"scroll"}}>
 
-                <div  style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex"}}>官方榜</div>
+                <div style={{width:"100%",marginBottom:'10px'}}>
+                    <MenuBar current="4"/>
+                </div>
+
+                <div  style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex",padding:'20px'}}>官方榜</div>
 
                 {this.state.officialRank.map(item=>(
-                    <div style={{width:"100%",margin:"20px 0 20px 0"}}>
+                    <div style={{width:"100%",margin:"20px 0 20px 0",padding:'20px'}}>
                         <OfficialRankList rank={item}/>
                     </div>
                 ))}
 
-                <div  style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex"}}>全球榜</div>
+                <div  style={{fontSize:"20px", fontWeight:"bolder", width:"100%", display:"flex",padding:'20px'}}>全球榜</div>
 
-                <div style={{width:"100%", display:"flex", flexWrap:"wrap"}}>
+                <div style={{width:"100%", display:"flex", flexWrap:"wrap",padding:'20px'}}>
                     {this.state.globalRank.map(item=>(
                         <div className="rankListPageSongListItem">
                             <ShowFramI

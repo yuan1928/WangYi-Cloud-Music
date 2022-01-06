@@ -131,13 +131,12 @@ class Header extends React.Component<any, any>{
                         播放：{(this.state.playCount>=10000)?Math.floor(this.state.playCount/10000)+"万":this.state.playCount}
                     </div>
                     <div className="songListPageHeaderRow">
-                        简介：
-                        {this.state.description.length===0?"无":null}
+                        {this.state.description.length===0?"简介：无":null}
                         {
                             this.state.description.length<=100?
-                                <>{this.state.description}</>:
+                                <div style={{textAlign:"start"}}>简介：{this.state.description}</div>:
                                 <div style={{display:"flex"}} ref={this.state.descriptionAbstractRef}>
-                                    {this.state.description.slice(0,11)+"..."}
+                                    简介：{this.state.description.slice(0,11)+"..."}
                                     <CaretDownOutlined onClick={this.showFullDescription}  style={{color:"rgb(201,38,32)"}}/>
                                 </div>
                         }
@@ -147,6 +146,7 @@ class Header extends React.Component<any, any>{
                          style={{display:"none",textAlign:"start"}}
                          ref={this.state.descriptionFullRef}
                     >
+                        简介：
                         {this.state.description.split("\n").map(paragraph=>(<div style={{textAlign:"start"}}>{paragraph}</div>))}
                         <CaretUpOutlined onClick={this.showAbstractDescription} style={{color:"rgb(201,38,32)"}}/>
                     </div>

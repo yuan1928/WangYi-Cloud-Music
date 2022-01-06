@@ -4,6 +4,7 @@ import {getSongLists} from "../../../../../apis/searchPage";
 import './SongLists.css'
 import {PlayCircleOutlined} from "@ant-design/icons";
 import {Pagination} from "antd";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface SongList{
     id:number,
@@ -66,6 +67,7 @@ class SongLists extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%"}}>
+                <MenuBar keyword={this.state.keyword} current="5"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}张歌单
                 </span>

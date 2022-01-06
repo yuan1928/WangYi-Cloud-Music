@@ -1,8 +1,11 @@
 import React from "react";
-import {getSongIDs,getSongUrl,isSongValid} from "../../../../../apis/songListDetailPage";
+import {getSongIDs, getSongListDetailInfo, getSongUrl, isSongValid} from "../../../../../apis/songListDetailPage";
 import {HeartOutlined, DownloadOutlined} from "@ant-design/icons";
 import './Songs.css'
 import {playMusicOfSongList} from "../../MainPage";
+import {withRouter} from "react-router";
+import Header from "../Header/Header";
+import {NavMenu} from "../../../common/NavMenu/NavMenu";
 
 interface Song{
     id:number,
@@ -15,6 +18,7 @@ interface Song{
 }
 interface State{
     id:number
+    menu:any
     songs:Song[]
     selectedRow:number,
     rows:any
@@ -22,6 +26,11 @@ interface State{
 class Songs extends React.Component<any, any>{
     state:State={
         id:this.props.match.params.id,
+        menu:[
+            {key:"1",title:"歌曲列表",click:()=>{this.click("songs")}},
+            {key:"2",title:"评论",click:()=>{this.click("comments")}},
+            {key:"3",title:"收藏者",click:()=>{this.click("collectors")}},
+        ],
         songs:[],
         selectedRow:this.props.match.params.selectedRow!==undefined?this.props.match.params.selectedRow:-1,
         rows:React.createRef()
@@ -33,7 +42,14 @@ class Songs extends React.Component<any, any>{
             const row=this.state.rows.current.children[this.state.selectedRow]
             row.style.backgroundColor="rgba(0,0,0,0.15)"
         }*/
-
+        if(this.state.menu[1].title==="评论")
+        {
+            getSongListDetailInfo(this.state.id).then(res=>{
+                const menu=this.state.menu
+                menu[1].title="评论("+res.data.playlist.commentCount+")"
+                this.forceUpdate()
+            })
+        }
         getSongIDs(this.state.id).then(res=>{
             let idx=1
             for(let song of res.data.songs)
@@ -51,6 +67,10 @@ class Songs extends React.Component<any, any>{
             }
             this.forceUpdate()
         })
+    }
+
+    click=(subPage:string)=>{
+        this.props.history.push("/song-list/"+subPage+"/"+this.state.id)
     }
 
     getDuration=(time:number)=>{
@@ -85,6 +105,8 @@ class Songs extends React.Component<any, any>{
     render() {
         return (
             <div style={{width:"100%"}}>
+                <Header id={this.state.id}/>
+                <NavMenu menu={this.state.menu} current="1"/>
                 <div style={{width:"100%",display:"flex",alignItems:"center",margin:"10px 0 10px 0"}}>
                     <div style={{width:"10%"}}/>
                     <div style={{width:"30%",display:"flex"}}>标题</div>
@@ -126,4 +148,4 @@ class Songs extends React.Component<any, any>{
     }
 }
 
-export default Songs
+export default withRouter(Songs)

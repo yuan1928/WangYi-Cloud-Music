@@ -4,6 +4,7 @@ import RecommendSongsList from "./RecommendSongsList/RecommendSongsList";
 import Broadcast from "./SpetialBroadcast/Broadcast";
 import MV from './MV/MV'
 import NewMusic from "./NewMusic/NewMusic";
+import MenuBar from "../MenuBar/MenuBar";
 
 
 class RecommendPage extends React.Component<any, any>{
@@ -12,7 +13,10 @@ class RecommendPage extends React.Component<any, any>{
 
     render() {
         return (
-            <div style={{position:"relative",height:"80vh",marginTop:"5px",display:"flex",flexWrap:"wrap",overflow:"scroll"}}>
+            <div style={{position:"relative",height:"80vh",display:"flex",flexWrap:"wrap",overflowY:"scroll"}}>
+                <div style={{width:"100%",marginBottom:"10px"}}>
+                    <MenuBar current="1"/>
+                </div>
                 <CarouselFigure/>
                 <RecommendSongsList/>
                 <Broadcast/>

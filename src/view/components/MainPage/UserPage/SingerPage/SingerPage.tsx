@@ -3,6 +3,7 @@ import {getSingers} from "../../../../../apis/singerPage";
 import './singerPage.css'
 import {Pagination} from "antd";
 import {withRouter} from "react-router";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface Button{
     name:string,
@@ -124,6 +125,9 @@ class SingerPage extends React.Component<any, any>{
     render() {
         return (
             <div id="singerPageRoot">
+                <div style={{width:"100%",marginBottom:"10px"}}>
+                    <MenuBar current="5"/>
+                </div>
                 <div className="singerPageConsole" ref={this.state.areaButtonsRef}>
                     <div className="singerPageButtonTile">语种:</div>
                     {this.state.areaButtons.map((item,idx)=>(
@@ -177,19 +181,21 @@ class SingerPage extends React.Component<any, any>{
                             </div>
                     ))}
                 </div>
-                {
-                    this.state.curSingers.map((item)=>(
-                        <div style={{width:'20%',padding:"15px 15px 0 0"}}>
-                            <img
-                                src={item.imgUrl}
-                                style={{width:"100%",objectFit:"cover",borderRadius:'3px',cursor:"pointer"}}
-                                alt=""
-                                onClick={()=>{this.props.history.push("/singer/"+item.id)}}
-                            />
-                            <div>{item.name}</div>
-                        </div>
-                    ))
-                }
+                <div style={{width:"100%",padding:"20px",display:"flex",alignItems:"center",flexWrap:"wrap"}}>
+                    {
+                        this.state.curSingers.map((item)=>(
+                            <div style={{width:'20%',padding:"15px 15px 0 0"}}>
+                                <img
+                                    src={item.imgUrl}
+                                    style={{width:"100%",objectFit:"cover",borderRadius:'3px',cursor:"pointer"}}
+                                    alt=""
+                                    onClick={()=>{this.props.history.push("/singer/"+item.id)}}
+                                />
+                                <div>{item.name}</div>
+                            </div>
+                        ))
+                    }
+                </div>
                 <div style={{width:"100%",margin:"10px 0 20px 0"}}>
                     <Pagination
                         defaultCurrent={1}

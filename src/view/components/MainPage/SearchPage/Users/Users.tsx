@@ -4,6 +4,7 @@ import {getUsers} from "../../../../../apis/searchPage";
 import './Users.css'
 import {ManOutlined, WomanOutlined} from "@ant-design/icons";
 import {Pagination} from "antd";
+import MenuBar from "../MenuBar/MenuBar";
 
 interface User{
     id:number,
@@ -61,6 +62,7 @@ class Users extends React.Component<any, any>{
     render() {
         return (
             <div>
+                <MenuBar keyword={this.state.keyword} current="7"/>
                 <span style={{display:"flex",fontSize:'25px',fontWeight:"bolder",padding:"5px"}}>
                     找到{this.state.resNum}位用户
                 </span>

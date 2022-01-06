@@ -22,7 +22,7 @@ class MenuBar extends React.Component<any, any>{
     render() {
         return (
             <div>
-                <NavMenu menu={this.state.menuItem} />
+                <NavMenu menu={this.state.menuItem} current={this.props.current}/>
             </div>
         )
     }
