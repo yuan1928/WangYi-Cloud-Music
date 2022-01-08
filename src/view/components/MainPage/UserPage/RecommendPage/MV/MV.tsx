@@ -23,7 +23,7 @@ class MV extends React.Component<any, any>{
         if(!this.state.isRequest)
         {
             getMV().then(res=>{
-                for(let item of res.data.result)
+                for(let item of res.data.result.slice(1))
                 {
                     this.state.songsInfo.push({
                         imgUrl:item.picUrl,
